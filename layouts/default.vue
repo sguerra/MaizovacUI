@@ -23,4 +23,14 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+
+h2 {
+  margin: 1rem 0;
+}
+
+/* Form styles */
+.form-field {
+    margin-bottom: 1.5rem;
+}
+
 </style>
