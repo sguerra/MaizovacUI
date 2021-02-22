@@ -20,7 +20,12 @@
                         </vs-tr>
                     </template>
                     <template #tbody>
-                        <vs-tr :key="user.id" v-for="user in $vs.getPage(applyFilters(), page, max)" :data="user" @click="viewUser(user)">
+                        <vs-tr
+                            :key="user.id"
+                            v-for="user in $vs.getPage(applyFilters(), page, max)"
+                            :data="user"
+                            @click="viewUser(user)"
+                        >
                             <vs-td>
                                 {{ user.id }}
                             </vs-td>
@@ -42,7 +47,13 @@
                         <vs-pagination v-model="page" :length="$vs.getLength(applyFilters(), max)" />
                     </template>
                 </vs-table>
-                <NewUser @saved="handleUserSaved" :user="currentUser" :open="openEditModal" :onClose="onClose" @deleted="handleUserDeleted" />
+                <NewUser
+                    @saved="handleUserSaved"
+                    :user="currentUser"
+                    :open="openEditModal"
+                    :onClose="onClose"
+                    @deleted="handleUserDeleted"
+                />
             </vs-col>
         </vs-row>
     </div>
@@ -81,7 +92,7 @@ export default Vue.extend({
             await usersApi.save(user)
             this.fetchUsers()
         },
-        
+
         async handleUserDeleted(user: IUser) {
             this.toggleEditModal(false)
             await usersApi.delete(user)

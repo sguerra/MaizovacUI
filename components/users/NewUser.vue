@@ -2,7 +2,7 @@
     <div>
         <vs-dialog prevent-close v-model="active" v-on:close="onClose">
             <template #header>
-                <h3>{{getTitle()}}</h3>
+                <h3>{{ getTitle() }}</h3>
             </template>
             <vs-row justify="space-between" class="modal-actions" align="center">
                 <vs-col w="3">
@@ -13,7 +13,7 @@
                         <vs-button danger @click="onDelete" v-if="editable"> Delete </vs-button>
                     </vs-row>
                 </vs-col>
-            </vs-row>            
+            </vs-row>
             <div>
                 <vs-input block class="form-field" v-model="user.name" label-placeholder="Name" :disabled="!editable" />
                 <vs-input
@@ -85,9 +85,9 @@ export default Vue.extend({
         },
 
         //TODO: move to a computed property
-        getTitle(){
+        getTitle() {
             return this.user.id ? 'Edit User' : 'New User'
-        }
+        },
     },
 
     watch: {
