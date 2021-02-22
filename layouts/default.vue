@@ -28,9 +28,18 @@ h2 {
   margin: 1rem 0;
 }
 
+/* Tables */
+.vs-table__tr {
+  cursor: pointer;
+}
+
 /* Form styles */
 .form-field {
     margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+  margin-bottom: 2rem;
 }
 
 </style>

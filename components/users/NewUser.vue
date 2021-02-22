@@ -2,18 +2,39 @@
     <div>
         <vs-dialog prevent-close v-model="active" v-on:close="onClose">
             <template #header>
-                <h3>New user</h3>
+                <h3>{{getTitle()}}</h3>
             </template>
-
+            <vs-row justify="space-between" class="modal-actions" align="center">
+                <vs-col w="3">
+                    <vs-switch v-model="editable"> Edit </vs-switch>
+                </vs-col>
+                <vs-col w="3">
+                    <vs-row justify="flex-end">
+                        <vs-button danger @click="onDelete" v-if="editable"> Delete </vs-button>
+                    </vs-row>
+                </vs-col>
+            </vs-row>            
             <div>
-                <vs-input block class="form-field" v-model="user.name" label-placeholder="Name" />
-                <vs-input block class="form-field" v-model="user.username" label-placeholder="Username" />
-                <vs-input block class="form-field" v-model="user.role" label-placeholder="Role" />
-                <vs-input block class="form-field" v-model="user.status" label-placeholder="Status" />
+                <vs-input block class="form-field" v-model="user.name" label-placeholder="Name" :disabled="!editable" />
+                <vs-input
+                    block
+                    class="form-field"
+                    v-model="user.username"
+                    label-placeholder="Username"
+                    :disabled="!editable"
+                />
+                <vs-input block class="form-field" v-model="user.role" label-placeholder="Role" :disabled="!editable" />
+                <vs-input
+                    block
+                    class="form-field"
+                    v-model="user.status"
+                    label-placeholder="Status"
+                    :disabled="!editable"
+                />
             </div>
 
             <template #footer>
-                <vs-button block @click="onSave"> Save </vs-button>
+                <vs-button block @click="onSave" :disabled="!editable"> Save </vs-button>
             </template>
         </vs-dialog>
     </div>
@@ -48,6 +69,7 @@ export default Vue.extend({
     data() {
         return {
             active: this.open,
+            editable: false,
         }
     },
 
@@ -56,13 +78,23 @@ export default Vue.extend({
             this.active = false
             this.$emit('saved', this.user)
         },
+
+        onDelete() {
+            this.active = false
+            this.$emit('deleted', this.user)
+        },
+
+        //TODO: move to a computed property
+        getTitle(){
+            return this.user.id ? 'Edit User' : 'New User'
+        }
     },
 
     watch: {
         open: function (val) {
             this.active = val
+            this.editable = false
         },
     },
 })
 </script>
-<style lang="stylus"></style>

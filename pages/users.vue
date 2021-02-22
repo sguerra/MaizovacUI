@@ -17,11 +17,10 @@
                             <vs-th sort @click="users = $vs.sortData($event, users, 'username')"> Username </vs-th>
                             <vs-th sort @click="users = $vs.sortData($event, users, 'role')"> Role </vs-th>
                             <vs-th sort @click="users = $vs.sortData($event, users, 'status')"> Status </vs-th>
-                            <vs-th> </vs-th>
                         </vs-tr>
                     </template>
                     <template #tbody>
-                        <vs-tr :key="user.id" v-for="user in $vs.getPage(applyFilters(), page, max)" :data="user">
+                        <vs-tr :key="user.id" v-for="user in $vs.getPage(applyFilters(), page, max)" :data="user" @click="viewUser(user)">
                             <vs-td>
                                 {{ user.id }}
                             </vs-td>
@@ -37,19 +36,13 @@
                             <vs-td>
                                 {{ user.status }}
                             </vs-td>
-                            <vs-td>
-                                <vs-row justify="space-between" align="center">
-                                    <vs-button border @click="editUser(user)"> Edit </vs-button>
-                                    <vs-button border danger @click="deleteUser(user)"> Remove </vs-button>
-                                </vs-row>
-                            </vs-td>
                         </vs-tr>
                     </template>
                     <template #footer>
                         <vs-pagination v-model="page" :length="$vs.getLength(applyFilters(), max)" />
                     </template>
                 </vs-table>
-                <NewUser @saved="handleUserSaved" :user="currentUser" :open="openEditModal" :onClose="onClose" />
+                <NewUser @saved="handleUserSaved" :user="currentUser" :open="openEditModal" :onClose="onClose" @deleted="handleUserDeleted" />
             </vs-col>
         </vs-row>
     </div>
@@ -88,22 +81,23 @@ export default Vue.extend({
             await usersApi.save(user)
             this.fetchUsers()
         },
+        
+        async handleUserDeleted(user: IUser) {
+            this.toggleEditModal(false)
+            await usersApi.delete(user)
+            this.fetchUsers()
+        },
 
         newUser() {
             this.toggleEditModal(true)
             this.currentUser = undefined
         },
 
-        editUser(user: IUser) {
+        viewUser(user: IUser) {
             this.toggleEditModal(true)
             this.currentUser = {
                 ...user,
             }
-        },
-
-        async deleteUser(user: IUser) {
-            await usersApi.delete(user)
-            this.fetchUsers()
         },
 
         onClose() {
