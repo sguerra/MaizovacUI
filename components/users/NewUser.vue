@@ -1,20 +1,19 @@
 <template>
     <div>
-        <vs-button @click="active = !active">New User</vs-button>
-        <vs-dialog v-model="active">
+        <vs-dialog prevent-close v-model="active" v-on:close="onClose">
             <template #header>
                 <h3>New user</h3>
             </template>
 
             <div>
-                <vs-input block class="form-field" v-model="user.names" label-placeholder="Name" />
+                <vs-input block class="form-field" v-model="user.name" label-placeholder="Name" />
                 <vs-input block class="form-field" v-model="user.username" label-placeholder="Username" />
                 <vs-input block class="form-field" v-model="user.role" label-placeholder="Role" />
                 <vs-input block class="form-field" v-model="user.status" label-placeholder="Status" />
             </div>
 
             <template #footer>
-                <vs-button block @click="onSave"> Sign In </vs-button>
+                <vs-button block @click="onSave"> Save </vs-button>
             </template>
         </vs-dialog>
     </div>
@@ -25,10 +24,18 @@ import { IUser } from '@/types'
 
 export default Vue.extend({
     props: {
+        open: {
+            type: Boolean,
+            default: false,
+        },
+        onClose: {
+            type: Function,
+        },
         user: {
             type: Object as PropType<IUser>,
             default: (): IUser => {
                 return {
+                    id: null,
                     name: '',
                     username: '',
                     status: '',
@@ -37,16 +44,23 @@ export default Vue.extend({
             },
         },
     },
+
     data() {
         return {
-            active: false,
+            active: this.open,
         }
     },
 
     methods: {
         onSave() {
-            this.active = false;
-            this.$emit('saved')
+            this.active = false
+            this.$emit('saved', this.user)
+        },
+    },
+
+    watch: {
+        open: function (val) {
+            this.active = val
         },
     },
 })
