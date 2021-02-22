@@ -7,18 +7,21 @@
                     <vs-button @click="newUser" icon><i class="bx bx-plus"></i>New User</vs-button>
                 </vs-row>
                 <vs-table class="table">
+                    <template #header>
+                        <vs-input block v-model="search" border placeholder="Search" />
+                    </template>
                     <template #thead>
                         <vs-tr>
-                            <vs-th> Id </vs-th>
-                            <vs-th> Username </vs-th>
-                            <vs-th> Name </vs-th>
-                            <vs-th> Role </vs-th>
-                            <vs-th> Status </vs-th>
+                            <vs-th sort @click="users = $vs.sortData($event, users, 'id')"> Id </vs-th>
+                            <vs-th sort @click="users = $vs.sortData($event, users, 'name')"> Name </vs-th>
+                            <vs-th sort @click="users = $vs.sortData($event, users, 'username')"> Username </vs-th>
+                            <vs-th sort @click="users = $vs.sortData($event, users, 'role')"> Role </vs-th>
+                            <vs-th sort @click="users = $vs.sortData($event, users, 'status')"> Status </vs-th>
                             <vs-th> </vs-th>
                         </vs-tr>
                     </template>
                     <template #tbody>
-                        <vs-tr :key="user.id" v-for="user in $vs.getPage(users, page, max)" :data="user">
+                        <vs-tr :key="user.id" v-for="user in $vs.getPage(applyFilters(), page, max)" :data="user">
                             <vs-td>
                                 {{ user.id }}
                             </vs-td>
@@ -43,7 +46,7 @@
                         </vs-tr>
                     </template>
                     <template #footer>
-                        <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
+                        <vs-pagination v-model="page" :length="$vs.getLength(applyFilters(), max)" />
                     </template>
                 </vs-table>
                 <NewUser @saved="handleUserSaved" :user="currentUser" :open="openEditModal" :onClose="onClose" />
@@ -64,6 +67,7 @@ export default Vue.extend({
         return {
             page: 1,
             max: 3,
+            search: '',
             users: [] as IUser[],
             currentUser: undefined as IUser | undefined,
             openEditModal: false,
@@ -108,6 +112,10 @@ export default Vue.extend({
 
         toggleEditModal(open: boolean) {
             this.openEditModal = open
+        },
+
+        applyFilters() {
+            return this.users.filter((user) => user.username.includes(this.search))
         },
     },
 })
