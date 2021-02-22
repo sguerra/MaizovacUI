@@ -2,9 +2,9 @@
     <div>
         <vs-dialog prevent-close v-model="active" v-on:close="onClose">
             <template #header>
-                <h3>{{ getTitle() }}</h3>
+                <h3>{{ isNew() ? 'New User' : 'User Info'}}</h3>
             </template>
-            <vs-row justify="space-between" class="modal-actions" align="center">
+            <vs-row justify="space-between" class="modal-actions" align="center" v-if="!isNew()">
                 <vs-col w="3">
                     <vs-switch v-model="editable"> Edit </vs-switch>
                 </vs-col>
@@ -85,8 +85,8 @@ export default Vue.extend({
         },
 
         //TODO: move to a computed property
-        getTitle() {
-            return this.user.id ? 'Edit User' : 'New User'
+        isNew() {
+            return !this.user.id
         },
     },
 
