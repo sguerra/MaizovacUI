@@ -1,112 +1,42 @@
 import { IUser } from '~/types'
+import BaseApi from './base'
 
-let USERS = [
-    {
-        id: 1,
-        name: 'Leanne Graham',
-        username: 'bret',
-        role: 'admin',
-        status: 'active',
-    },
-    {
-        id: 2,
-        name: 'Ervin Howell',
-        username: 'antonette',
-        role: 'admin',
-        status: 'active',
-    },
-    {
-        id: 3,
-        name: 'Clementine Bauch',
-        username: 'samantha',
-        role: 'admin',
-        status: 'active',
-    },
-    {
-        id: 4,
-        name: 'Patricia Lebsack',
-        username: 'karianne',
-        role: 'admin',
-        status: 'active',
-    },
-    {
-        id: 5,
-        name: 'Chelsey Dietrich',
-        username: 'kamren',
-        role: 'admin',
-        status: 'active',
-    },
-    {
-        id: 6,
-        name: 'Mrs. Dennis Schulist',
-        username: 'leopoldo_corkery',
-        role: 'admin',
-        status: 'active',
-    },
-    {
-        id: 7,
-        name: 'Kurtis Weissnat',
-        username: 'elwyn.skiles',
-        role: 'admin',
-        status: 'active',
-    },
-    {
-        id: 8,
-        name: 'Nicholas Runolfsdottir V',
-        username: 'maxime_nienow',
-        role: 'admin',
-        status: 'active',
-    },
-    {
-        id: 9,
-        name: 'Glenna Reichert',
-        username: 'delphine',
-        role: 'admin',
-        status: 'active',
-    },
-    {
-        id: 10,
-        name: 'Clementina DuBuque',
-        username: 'moriah.stanton',
-        role: 'admin',
-        status: 'active',
-    },
-] as IUser[]
 
-class UsersApi {
+
+interface ApiCollection<T> {
+    items: T[]
+}
+
+class UsersApi extends BaseApi {
+    _resource = '/users'
+
     async find(): Promise<IUser[]> {
-        return USERS
-    }
-
-    async create(user: IUser): Promise<IUser> {
-        user.id = Math.floor(Math.random() * 10000)
-
-        USERS.push(user)
-
-        return user
+        const response = ((await this.get(this._resource)) as unknown) as ApiCollection<IUser>
+        return response.items
     }
 
     async update(user: IUser): Promise<IUser> {
-        let foundUser = USERS.find((u) => u.id === user.id)
-        Object.assign(foundUser, user)
-
-        if (!foundUser) {
-            throw new Error('Eeergas')
+        const url = `${this._resource}/${user.username}`
+        const data = {
+            role: user.role,
+            status: user.status
         }
-
-        return foundUser
+        return ((await this.patch(url, data)) as unknown) as IUser
     }
 
     async save(user: IUser): Promise<IUser> {
-        if (!user.id) {
-            return this.create(user)
+        if (!user.uuid) {
+            const data = user as any
+            delete data['uuid']
+            return ((await this.post(this._resource, data)) as unknown) as IUser
         }
 
         return this.update(user)
     }
 
-    async delete(user: IUser) {
-        USERS = USERS.filter((u) => u.id !== user.id)
+    async destroy(user: IUser): Promise<IUser> {
+        const url = `${this._resource}/${user.username}`
+        return ((await this.delete(url)) as unknown) as IUser
     }
 }
 

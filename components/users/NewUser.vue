@@ -15,7 +15,6 @@
                 </vs-col>
             </vs-row>
             <div>
-                <vs-input block class="form-field" v-model="user.name" label-placeholder="Name" :disabled="!editable" />
                 <vs-input
                     block
                     class="form-field"
@@ -56,8 +55,7 @@ export default Vue.extend({
             type: Object as PropType<IUser>,
             default: (): IUser => {
                 return {
-                    id: null,
-                    name: '',
+                    uuid: null,
                     username: '',
                     status: '',
                     role: '',
@@ -86,7 +84,7 @@ export default Vue.extend({
 
         //TODO: move to a computed property
         isNew() {
-            return !this.user.id
+            return !this.user.uuid
         },
     },
 

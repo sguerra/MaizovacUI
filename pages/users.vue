@@ -4,7 +4,7 @@
             <h2>Users</h2>
             <vs-button @click="newUser" icon><i class="bx bx-plus"></i>New User</vs-button>
         </vs-row>
-        <GenericTable :columns="columns" :dataset="users" keywordFilterOn="name" @row-clicked="viewUser"/>
+        <GenericTable :columns="columns" :dataset="users" keywordFilterOn="username" @row-clicked="viewUser"/>
         <NewUser
             @saved="handleUserSaved"
             :user="currentUser"
@@ -24,12 +24,8 @@ import { ColumnConfig } from '~/components/GenericTable.vue'
 
 const TABLE_COLUMNS: ColumnConfig<IUser>[] = [
     {
-        key: 'id',
+        key: 'uuid',
         header: 'Id',
-    },
-    {
-        key: 'name',
-        header: 'Name',
     },
     {
         key: 'username',
@@ -65,7 +61,7 @@ export default Vue.extend({
 
     methods: {
         async fetchUsers() {
-            this.users = await usersApi.find()
+            this.users = await usersApi.find()            
         },
 
         async handleUserSaved(user: IUser) {
@@ -76,7 +72,7 @@ export default Vue.extend({
 
         async handleUserDeleted(user: IUser) {
             this.toggleEditModal(false)
-            await usersApi.delete(user)
+            await usersApi.destroy(user)
             this.fetchUsers()
         },
 
