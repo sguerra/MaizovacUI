@@ -1,7 +1,9 @@
 <template>
-    <div class="main-container">
-        <Nuxt />
-    </div>
+    <vs-row class="main-container" justify="center">
+        <vs-col w="8">
+            <Nuxt />
+        </vs-col>
+    </vs-row>
 </template>
 
 <style>

@@ -93,7 +93,7 @@ export default Vue.extend({
     watch: {
         open: function (val) {
             this.active = val
-            this.editable = false
+            this.editable = this.isNew()
         },
     },
 })
