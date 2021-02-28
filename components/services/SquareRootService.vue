@@ -9,7 +9,7 @@
             </vs-row>
         </vs-col>
         <vs-col w="2">
-            <vs-input block readonly placeholder="result" type="number" v-model="result"/>
+            <vs-input block readonly state="primary" placeholder="result" type="number" v-model="result"/>
         </vs-col>
     </ServiceCard>
 </template>

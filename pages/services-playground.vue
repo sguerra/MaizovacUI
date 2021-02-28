@@ -14,25 +14,7 @@
             <i class="fake-icon">/</i>
         </BinaryService>
         <SquareRootService/>
-        <ServiceCard title="Random string">
-            <vs-col w="1">
-                <vs-input block label-placeholder="length" type="number"/>
-            </vs-col>
-            <vs-col w="2">
-                <vs-checkbox>Digits (0-9)</vs-checkbox>
-            </vs-col>
-            <vs-col w="2">
-                <vs-checkbox>Uppercase (A-Z)</vs-checkbox>
-            </vs-col>
-            <vs-col w="1">
-                <vs-row justify="center">
-                    <vs-button flat icon><i class="fake-icon">=</i></vs-button>
-                </vs-row>
-            </vs-col>
-            <vs-col w="2">
-                <vs-input block readonly placeholder="result" type="number"/>
-            </vs-col>
-        </ServiceCard>
+        <RandomStringService/>
     </div>
 </template>
 
@@ -41,9 +23,10 @@ import Vue from 'vue'
 import ServiceCard from '../components/services/ServiceCard.vue'
 import BinaryService from '../components/services/BinaryService.vue'
 import SquareRootService from '../components/services/SquareRootService.vue'
+import RandomStringService from '../components/services/RandomStringService.vue'
 
 export default Vue.extend({
-    components: { BinaryService, ServiceCard, SquareRootService },   
+    components: { BinaryService, ServiceCard, SquareRootService, RandomStringService },   
     
 })
 </script>
