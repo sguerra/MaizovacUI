@@ -4,7 +4,7 @@
             <vs-row justify="space-between" align="center">
                 <slot></slot>
                 <vs-col w="2" offset="1"> 
-                    <vs-button block @click="onTryClick" icon relief color="#ffeb00" class="dark-text" :loading="loading">Try for <strong>$15</strong> USD</vs-button>
+                    <vs-button block @click="onTryClick" icon relief color="#ffeb00" class="dark-text" :loading="loading">Try for <strong>${{cost}}</strong> USD</vs-button>
                 </vs-col>
             </vs-row>
             <div v-if="error" class="error">
@@ -19,7 +19,12 @@ import Vue from 'vue'
 export default Vue.extend({
     props: {
         title: {
-            type: String
+            type: String,
+            required: true
+        },
+        cost: {
+            type: Number,
+            required: true
         },
         error: {
             type: String

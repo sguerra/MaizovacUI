@@ -1,5 +1,5 @@
 <template>
-    <ServiceCard title="Random String" @executed="executeOperation" :loading="loading" :error="error">
+    <ServiceCard title="Random String" @executed="executeOperation" :loading="loading" :error="error" :cost="cost">
         <vs-col w="1">
             <vs-input block label-placeholder="length" type="number" v-model="length"/>
         </vs-col>
@@ -29,6 +29,13 @@ import ServiceCard from './ServiceCard.vue'
 export default Vue.extend({
     components: { ServiceCard },
 
+    props: {
+        cost: {
+            type: Number,
+            required: true
+        }
+    },
+    
     data() {
         return {
             length: 5,

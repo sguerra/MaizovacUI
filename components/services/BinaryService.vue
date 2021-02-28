@@ -1,5 +1,5 @@
 <template>
-    <ServiceCard :title="title" @executed="executeOperation" :loading="loading" :error="error">
+    <ServiceCard :title="title" @executed="executeOperation" :loading="loading" :error="error" :cost="cost">
         <vs-col w="2">
             <vs-input block label-placeholder="number" type="number" v-model="firstOperand" />
         </vs-col>
@@ -41,6 +41,10 @@ export default Vue.extend({
         operation: {
             type: String,
         },
+        cost: {
+            type: Number,
+            required: true
+        }
     },
 
     data() {
