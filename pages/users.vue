@@ -9,7 +9,7 @@
             @saved="handleUserSaved"
             :user="currentUser"
             :open="openEditModal"
-            :onClose="onClose"
+            :onClose="onEditModalClose"
             @deleted="handleUserDeleted"
         />
     </div>
@@ -45,9 +45,6 @@ export default Vue.extend({
     components: { NewUser },
     data() {
         return {
-            page: 1,
-            max: 3,
-            search: '',
             users: [] as IUser[],
             columns: TABLE_COLUMNS,
             currentUser: undefined as IUser | undefined,
@@ -88,7 +85,7 @@ export default Vue.extend({
             }
         },
 
-        onClose() {
+        onEditModalClose() {
             this.toggleEditModal(false)
         },
 
