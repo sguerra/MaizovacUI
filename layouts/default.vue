@@ -1,9 +1,22 @@
 <template>
-    <vs-row class="main-container" justify="center">
-        <vs-col w="8">
-            <Nuxt />
-        </vs-col>
-    </vs-row>
+    <div>
+        <vs-navbar center-collapsed not-line color="primary" text-white shadow square>
+            <template #left>
+                <img src="/logo2.png" alt="" />
+            </template>
+            <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/users">Users</NuxtLink> </vs-navbar-item>
+            <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/services-playground">Playground</NuxtLink> </vs-navbar-item>
+            <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/services">Services</NuxtLink> </vs-navbar-item>
+            <template #right>
+                <vs-button>Logout</vs-button>
+            </template>
+        </vs-navbar>
+        <vs-row class="main-container" justify="center">
+            <vs-col w="8">
+                <Nuxt />
+            </vs-col>
+        </vs-row>
+    </div>
 </template>
 
 <style>
@@ -42,5 +55,9 @@ h2 {
 
 .modal-actions {
     margin-bottom: 2rem;
+}
+
+.main-container {
+    margin-top: 50px;
 }
 </style>
