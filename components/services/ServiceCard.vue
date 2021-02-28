@@ -3,10 +3,13 @@
             <h3>{{title}}</h3>
             <vs-row justify="space-between" align="center">
                 <slot></slot>
-                <vs-col w="2" offset="1">
-                    <vs-button block @click="onTryClick" icon relief>Try for $15 USD</vs-button>
+                <vs-col w="2" offset="1"> 
+                    <vs-button block @click="onTryClick" icon relief color="#ffeb00" class="dark-text" :loading="loading">Try for <strong>$15</strong> USD</vs-button>
                 </vs-col>
-            </vs-row>            
+            </vs-row>
+            <div v-if="error" class="error">
+                {{error}}
+            </div>
         </div>
 </template>
 
@@ -17,6 +20,13 @@ export default Vue.extend({
     props: {
         title: {
             type: String
+        },
+        error: {
+            type: String
+        },
+        loading: {
+            type: Boolean,
+            default: false
         }
     },
 
@@ -48,4 +58,18 @@ export default Vue.extend({
     height: 18px;
 }
 
+
+.dark-text {
+    color: black;
+}
+
+strong {
+    margin: 0 .5rem;
+}
+
+.error {
+    color: rgb(255, 71, 87);
+    margin: .5rem 0;
+    font-size: 12px;
+}
 </style>

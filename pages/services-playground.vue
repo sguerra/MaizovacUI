@@ -1,16 +1,16 @@
 <template>
     <div>
         <h2>Services Playground</h2>
-        <BinaryService title="Adition">
+        <BinaryService title="Adition" operation="addition">
             <i class="bx bx-plus"></i>
         </BinaryService>
-        <BinaryService title="Substraction">
+        <BinaryService title="Substraction" operation="substraction">
             <i class="bx bx-minus"></i>
         </BinaryService>
-        <BinaryService title="Muliplication">
+        <BinaryService title="Muliplication" operation="multiplication">
             <i class="bx bx-x"></i>
         </BinaryService>
-        <BinaryService title="Division">
+        <BinaryService title="Division" operation="division">
             <i class="fake-icon">/</i>
         </BinaryService>
         <ServiceCard title="Square Root">
