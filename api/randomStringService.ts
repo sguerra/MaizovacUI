@@ -1,7 +1,7 @@
 import RandomStringOperation from '~/models/RandomStringOperation'
 import BaseApi from './base'
 
-class RandomStringService extends BaseApi {
+class RandomStringServiceApi extends BaseApi {
     async execute(operation: RandomStringOperation): Promise<string> {        
         return 'qwerty'
         // const data = await this.post('/services/random_string', operation)
@@ -9,4 +9,4 @@ class RandomStringService extends BaseApi {
     }
 }
 
-export default RandomStringService
+export default RandomStringServiceApi

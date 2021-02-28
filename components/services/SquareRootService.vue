@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { squareRootService } from '~/api'
+import { squareRootServiceApi } from '~/api'
 import ServiceCard from './ServiceCard.vue'
 
 export default Vue.extend({
@@ -42,7 +42,7 @@ export default Vue.extend({
         async executeOperation() {            
             try {
                 this.loading = true;                
-                const result = await squareRootService.execute(Number(this.operand))
+                const result = await squareRootServiceApi.execute(Number(this.operand))
                 this.result = result.toString()
             } catch (error) {
                 this.error = error.message

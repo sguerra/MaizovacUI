@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { randomStringService } from '~/api'
+import { randomStringServiceApi } from '~/api'
 import RandomStringOperation from '~/models/RandomStringOperation'
 import ServiceCard from './ServiceCard.vue'
 
@@ -52,7 +52,7 @@ export default Vue.extend({
             try {
                 this.loading = true;                
                 const operation = new RandomStringOperation(Number(this.length), this.includeDigits, this.includeUppercase)
-                this.result = await randomStringService.execute(operation)
+                this.result = await randomStringServiceApi.execute(operation)
                 
             } catch (error) {
                 this.error = error.message
