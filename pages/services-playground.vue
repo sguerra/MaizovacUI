@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="services.length">
         <h2>Services Playground</h2>
         <BinaryService title="Adition" operation="addition" :cost="getServiceByType('addition').cost">
             <i class="bx bx-plus"></i>
@@ -13,8 +13,8 @@
         <BinaryService title="Division" operation="division" :cost="getServiceByType('division').cost">
             <i class="fake-icon">/</i>
         </BinaryService>
-        <SquareRootService  :cost="getServiceByType('square_root').cost"/>
-        <RandomStringService  :cost="getServiceByType('random_string').cost"/>
+        <SquareRootService :cost="getServiceByType('square_root').cost" />
+        <RandomStringService :cost="getServiceByType('random_string').cost" />
     </div>
 </template>
 
@@ -35,14 +35,13 @@ export default Vue.extend({
         }
     },
 
-    async fetch(){
-        this.services = await servicesApi.fetch();
+    async fetch() {
+        this.services = await servicesApi.fetch()
     },
 
     methods: {
         getServiceByType(serviceType: ServiceTypes) {
-            const service = this.services.find((s) => s.type === serviceType)
-            return service || {}
+            return this.services.find((s) => s.type === serviceType)
         },
     },
 })
