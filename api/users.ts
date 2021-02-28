@@ -1,11 +1,5 @@
-import { IUser } from '~/types'
+import { ApiCollection, IUser } from '~/types'
 import BaseApi from './base'
-
-
-
-interface ApiCollection<T> {
-    items: T[]
-}
 
 class UsersApi extends BaseApi {
     _resource = '/users'
