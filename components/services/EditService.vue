@@ -17,13 +17,17 @@
                     label-placeholder="Cost"
                     :disabled="!editable"
                 />
-                <vs-input
-                    block
-                    class="form-field"
-                    v-model="service.status"
-                    label-placeholder="Status"
-                    :disabled="!editable"
-                />
+                <vs-select label-placeholder="Status" v-model="service.status" class="form-field" :disabled="!editable" block>
+                    <vs-option label="Active" value="active">
+                        Active
+                    </vs-option>
+                    <vs-option label="Beta" value="beta">
+                        Beta
+                    </vs-option>
+                    <vs-option label="Inactive" value="inactive">
+                        Inactive
+                    </vs-option>
+                </vs-select>
             </div>
 
             <template #footer>
