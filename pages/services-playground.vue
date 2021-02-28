@@ -25,7 +25,7 @@ import ServiceCard from '../components/services/ServiceCard.vue'
 import BinaryService from '../components/services/BinaryService.vue'
 import SquareRootService from '../components/services/SquareRootService.vue'
 import RandomStringService from '../components/services/RandomStringService.vue'
-import { serviceApi } from '~/api'
+import { servicesApi } from '~/api'
 
 export default Vue.extend({
     components: { BinaryService, ServiceCard, SquareRootService, RandomStringService },
@@ -36,7 +36,7 @@ export default Vue.extend({
     },
 
     async fetch(){
-        this.services = await serviceApi.fetch();
+        this.services = await servicesApi.fetch();
     },
 
     methods: {

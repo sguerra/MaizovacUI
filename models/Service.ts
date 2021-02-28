@@ -2,11 +2,13 @@ export type ServiceTypes = 'addition' | 'substraction' | 'multiplication' | 'div
 export type ServiceStatus = 'active' | 'beta' | 'inactive'
 
 class Service {
+    uuid: string;
     cost: number
     type: ServiceTypes
     status: ServiceStatus
 
-    constructor(cost: number, type: ServiceTypes, status: ServiceStatus) {
+    constructor(uuid: string, cost: number, type: ServiceTypes, status: ServiceStatus) {
+        this.uuid = uuid
         this.cost = cost
         this.type = type
         this.status = status
