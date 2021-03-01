@@ -7,6 +7,7 @@
             <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/users">Users</NuxtLink> </vs-navbar-item>
             <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/services-playground">Playground</NuxtLink> </vs-navbar-item>
             <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/services">Services</NuxtLink> </vs-navbar-item>
+            <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/records">Records</NuxtLink> </vs-navbar-item>
             <template #right>
                 <vs-button>Logout</vs-button>
             </template>

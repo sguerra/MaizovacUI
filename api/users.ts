@@ -28,9 +28,9 @@ class UsersApi extends BaseApi {
         return this.update(user)
     }
 
-    async destroy(user: IUser): Promise<IUser> {
+    async destroy(user: IUser): Promise<void> {
         const url = `${this._resource}/${user.username}`
-        return ((await this.delete(url)) as unknown) as IUser
+        await this.delete(url)
     }
 }
 
