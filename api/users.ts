@@ -6,7 +6,7 @@ class UsersApi extends BaseApi {
 
     async find(): Promise<IUser[]> {
         const response = ((await this.get(this._resource)) as unknown) as ApiCollection<IUser>
-        return response.items
+        return response.items || []
     }
 
     async update(user: IUser): Promise<IUser> {
