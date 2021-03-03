@@ -42,8 +42,9 @@ export default Vue.extend({
 
 .intro p {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     color: #444;
+    font-style: italic;
 }
 
 .image-wrapper {

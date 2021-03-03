@@ -20,6 +20,9 @@
                 <NuxtLink tag="li" to="/records">Records</NuxtLink>
             </vs-navbar-item>
             <vs-navbar-item :active="false" v-if="isAdmin()">
+                <NuxtLink tag="li" to="/user-balances">User Balances</NuxtLink>
+            </vs-navbar-item>
+            <vs-navbar-item :active="false" v-if="isAdmin()">
                 <NuxtLink tag="li" to="/users">Users</NuxtLink>
             </vs-navbar-item>
             <template #right v-if="loggedIn()">
@@ -33,7 +36,7 @@
             </template>
         </vs-navbar>
         <vs-row class="main-container" justify="center">
-            <vs-col w="8">
+            <vs-col w="9">
                 <Nuxt />
             </vs-col>
         </vs-row>
