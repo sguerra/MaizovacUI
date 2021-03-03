@@ -17,9 +17,9 @@ class BaseApi {
         this.token = token
     }
 
-    async _makeRequest(config: AxiosRequestConfig) {
+    async _makeRequest<T>(config: AxiosRequestConfig) {
         try {
-            const response = await this.axios({
+            const response = await this.axios.request<T>({
                 ...config,
                 headers: {
                     Authorization: this.token,
@@ -31,25 +31,25 @@ class BaseApi {
         }
     }
 
-    async get(url: string) {
-        return this._makeRequest({ method: 'GET', url: url })
+    async get<T>(url: string) {
+        return this._makeRequest<T>({ method: 'GET', url: url })
     }
 
     async getCollection<T>(url: string):  Promise<T[]> {
-        const response = ((await this.get(url)) as unknown) as ApiCollection<T>
+        const response = await this.get<ApiCollection<T>>(url)
         return response.items || []
     }
 
-    async post(url: string, data: any) {
-        return this._makeRequest({ method: 'POST', url, data })
+    async post<T>(url: string, data: any) {
+        return this._makeRequest<T>({ method: 'POST', url, data })
     }
 
-    async patch(url: string, data: any) {
-        return this._makeRequest({ method: 'PATCH', url, data })
+    async patch<T>(url: string, data: any) {
+        return this._makeRequest<T>({ method: 'PATCH', url, data })
     }
 
-    async delete(url: string) {
-        return this._makeRequest({ method: 'DELETE', url })
+    async delete<T>(url: string) {
+        return this._makeRequest<T>({ method: 'DELETE', url })
     }
 }
 

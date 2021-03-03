@@ -1,46 +1,62 @@
 <template>
-    <div class="card">
-            <h3>{{title}}</h3>
-            <vs-row justify="space-between" align="center">
-                <slot></slot>
-                <vs-col w="2" offset="1"> 
-                    <vs-button block @click="onTryClick" icon relief color="#ffeb00" class="dark-text" :loading="loading">Try for <strong>${{cost}}</strong> USD</vs-button>
-                </vs-col>
-            </vs-row>
-            <div v-if="error" class="error">
-                {{error}}
-            </div>
+    <div v-bind:class="cardClasses">
+        <h3>{{ title }} <span class="beta-badge" v-if="service.status === 'beta'">BETA</span></h3>
+        <vs-row justify="space-between" align="center">
+            <slot></slot>
+            <vs-col w="2" offset="1">
+                <vs-button block icon relief color="#ffeb00" class="dark-text" disabled
+                    v-if="service.status === 'inactive'">Try for <strong>${{ service.cost }}</strong> USD</vs-button
+                >
+                <vs-button block @click="onTryClick" icon relief color="#ffeb00" class="dark-text" :loading="loading"
+                    v-else>Try for <strong>${{ service.cost }}</strong> USD</vs-button
+                >
+            </vs-col>
+        </vs-row>
+        <div v-if="error" class="error">
+            {{ error }}
         </div>
+    </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Service from '~/models/Service'
 
 export default Vue.extend({
     props: {
         title: {
             type: String,
-            required: true
+            required: true,
         },
-        cost: {
-            type: Number,
-            required: true
+        service: {
+            type: Service,
+            required: true,
         },
         error: {
-            type: String
+            type: String,
         },
         loading: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
+    },
+
+    computed: {
+        cardClasses(): any {
+            return {
+                card: true,
+                active: this.service.status === 'active',
+                inactive: this.service.status === 'inactive',
+                beta: this.service.status === 'beta',
+            }
+        },
     },
 
     methods: {
-        onTryClick(){
-            this.$emit('executed');
-        }
-    }
-    
+        onTryClick() {
+            this.$emit('executed')
+        },
+    },
 })
 </script>
 
@@ -55,6 +71,7 @@ export default Vue.extend({
 .card h3 {
     margin-bottom: 1rem;
     color: #333;
+    display: flex;
 }
 
 .fake-icon {
@@ -63,18 +80,26 @@ export default Vue.extend({
     height: 18px;
 }
 
-
 .dark-text {
     color: black;
 }
 
 strong {
-    margin: 0 .5rem;
+    margin: 0 0.5rem;
 }
 
 .error {
     color: rgb(255, 71, 87);
-    margin: .5rem 0;
+    margin: 0.5rem 0;
     font-size: 12px;
+}
+
+.beta-badge {
+    background-color: red;
+    color: white;
+    padding: 2px 4px;
+    font-size: .75rem;
+    border-radius: 4px;
+    margin-left: .5rem;
 }
 </style>

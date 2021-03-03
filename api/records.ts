@@ -1,5 +1,4 @@
 import Record from '~/models/Record'
-import { ApiCollection } from '~/types'
 import { DateUtils } from '~/utils/DateUtils'
 import BaseApi from './base'
 

@@ -1,5 +1,5 @@
 <template>
-    <ServiceCard title="Square Root" @executed="executeOperation" :loading="loading" :error="error" :cost="cost">
+    <ServiceCard title="Square Root" @executed="executeOperation" :loading="loading" :error="error" :service="service">
         <vs-col w="2">
             <vs-input block label-placeholder="number" type="number" v-model="operand"/>
         </vs-col>
@@ -17,16 +17,17 @@
 <script lang="ts">
 import Vue from 'vue'
 import { squareRootServiceApi } from '~/api'
+import Service from '~/models/Service'
 import ServiceCard from './ServiceCard.vue'
 
 export default Vue.extend({
     components: { ServiceCard },
 
     props: {
-        cost: {
-            type: Number,
+        service: {
+            type: Service,
             required: true
-        }
+        },
     },
 
     data() {

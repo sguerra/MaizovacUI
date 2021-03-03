@@ -14,14 +14,14 @@ class UsersApi extends BaseApi {
             role: user.role,
             status: user.status,
         }
-        return ((await this.patch(url, data)) as unknown) as IUser
+        return await this.patch<IUser>(url, data)
     }
 
     async save(user: IUser): Promise<IUser> {
         if (!user.uuid) {
             const data = user as any
             delete data['uuid']
-            return ((await this.post(this._resource, data)) as unknown) as IUser
+            return await this.post<IUser>(this._resource, data)
         }
 
         return this.update(user)

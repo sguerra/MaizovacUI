@@ -3,7 +3,7 @@
         <vs-row justify="space-between" align="center">
             <h2>Services</h2>
         </vs-row>
-        <GenericTable :columns="columns" :dataset="services" keywordFilterOn="type"  @row-clicked="viewService"/>
+        <GenericTable :columns="columns" :dataset="services" keywordFilterOn="type" @row-clicked="viewService"/>
         <EditService
             @saved="handleServiceSaved"
             :service="currentService"
@@ -57,7 +57,7 @@ export default Vue.extend({
 
     methods: {
         async fetchServices() {
-            this.services = await servicesApi.fetch()
+            this.services = await servicesApi.fetchAll()
         },
 
         async handleServiceSaved(service: Service) {

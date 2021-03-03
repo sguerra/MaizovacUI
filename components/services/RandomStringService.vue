@@ -1,5 +1,5 @@
 <template>
-    <ServiceCard title="Random String" @executed="executeOperation" :loading="loading" :error="error" :cost="cost">
+    <ServiceCard title="Random String" @executed="executeOperation" :loading="loading" :error="error" :service="service">
         <vs-col w="1">
             <vs-input block label-placeholder="length" type="number" v-model="length"/>
         </vs-col>
@@ -24,16 +24,17 @@
 import Vue from 'vue'
 import { randomStringServiceApi } from '~/api'
 import RandomStringOperation from '~/models/RandomStringOperation'
+import Service from '~/models/Service'
 import ServiceCard from './ServiceCard.vue'
 
 export default Vue.extend({
     components: { ServiceCard },
 
     props: {
-        cost: {
-            type: Number,
+        service: {
+            type: Service,
             required: true
-        }
+        },
     },
     
     data() {

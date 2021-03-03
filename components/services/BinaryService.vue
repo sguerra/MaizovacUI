@@ -1,5 +1,5 @@
 <template>
-    <ServiceCard :title="title" @executed="executeOperation" :loading="loading" :error="error" :cost="cost">
+    <ServiceCard :title="title" @executed="executeOperation" :loading="loading" :error="error" :service="service">
         <vs-col w="2">
             <vs-input block label-placeholder="number" type="number" v-model="firstOperand" />
         </vs-col>
@@ -28,6 +28,7 @@
 import Vue from 'vue'
 import { binaryServiceApi } from '~/api'
 import BinaryOperation, { BinaryOperationTypes } from '~/models/BinaryOperation'
+import Service from '~/models/Service'
 import ServiceCard from './ServiceCard.vue'
 import {} from './ServiceCard.vue'
 
@@ -38,13 +39,10 @@ export default Vue.extend({
         title: {
             type: String,
         },
-        operation: {
-            type: String,
-        },
-        cost: {
-            type: Number,
+        service: {
+            type: Service,
             required: true
-        }
+        },
     },
 
     data() {
@@ -59,10 +57,11 @@ export default Vue.extend({
 
     methods: {
         async executeOperation() {
+            
             const operation = new BinaryOperation(
                 Number(this.firstOperand),
                 Number(this.secondOperand),
-                this.operation as BinaryOperationTypes
+                this.service.type as BinaryOperationTypes
             )
 
             try {

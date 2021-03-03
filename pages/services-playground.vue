@@ -1,20 +1,20 @@
 <template>
     <div v-if="services.length">
         <h2>Services Playground</h2>
-        <BinaryService title="Adition" operation="addition" :cost="getServiceByType('addition').cost">
+        <BinaryService title="Addition" :service="getServiceByType('addition')">
             <i class="bx bx-plus"></i>
         </BinaryService>
-        <BinaryService title="Substraction" operation="substraction" :cost="getServiceByType('substraction').cost">
+        <BinaryService title="Substraction" :service="getServiceByType('substraction')">
             <i class="bx bx-minus"></i>
         </BinaryService>
-        <BinaryService title="Muliplication" operation="multiplication" :cost="getServiceByType('multiplication').cost">
+        <BinaryService title="Muliplication" :service="getServiceByType('multiplication')">
             <i class="bx bx-x"></i>
         </BinaryService>
-        <BinaryService title="Division" operation="division" :cost="getServiceByType('division').cost">
+        <BinaryService title="Division" :service="getServiceByType('division')">
             <i class="fake-icon">/</i>
         </BinaryService>
-        <SquareRootService :cost="getServiceByType('square_root').cost" />
-        <RandomStringService :cost="getServiceByType('random_string').cost" />
+        <SquareRootService :service="getServiceByType('square_root')" />
+        <RandomStringService :service="getServiceByType('random_string')" />
     </div>
 </template>
 
@@ -41,7 +41,11 @@ export default Vue.extend({
 
     methods: {
         getServiceByType(serviceType: ServiceTypes) {
-            return this.services.find((s) => s.type === serviceType)
+            const service = this.services.find((s) => s.type === serviceType)
+
+            if (service) 
+                service.status = 'inactive'
+            return service;
         },
     },
 })

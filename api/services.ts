@@ -1,14 +1,21 @@
 import Service from '~/models/Service'
-import { ApiCollection } from '~/types'
 import BaseApi from './base'
 
 class ServiceApi extends BaseApi {
-    async fetch(): Promise<Service[]> {
-        const response = ((await this.get('/services')) as unknown) as ApiCollection<Service>
-        return response.items || []
+    private _resource = '/services'
+    
+    async fetchAll(): Promise<Service[]> {
+        return await this.getCollection('/services')
     }
 
-    async save(service: Service) {}
+    async save(service: Service): Promise<Service> {
+        const url = `${this._resource}/${service.uuid}`
+        const data = {
+            cost: service.cost,
+            status: service.status,
+        }
+        return await this.patch<Service>(url, data)
+    }
 }
 
 export default ServiceApi

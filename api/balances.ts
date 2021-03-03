@@ -8,7 +8,7 @@ export interface IUserBalance {
 
 class UserBalancesApi extends BaseApi {
     async findCurrent(): Promise<IUserBalance> {
-        return (await this.get('/profile')) as IUserBalance
+        return await this.get<IUserBalance>('/profile')
     }
 
     async findAll(): Promise<IUserBalance[]> {
