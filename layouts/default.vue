@@ -2,14 +2,33 @@
     <div>
         <vs-navbar center-collapsed not-line color="primary" text-white shadow square>
             <template #left>
-                <img src="/logo2.png" alt="" />
+                <div class="logo">
+                    <i class='bx bx-calculator app-icon'></i>
+                    MaizoVAC
+                </div>
             </template>
-            <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/users">Users</NuxtLink> </vs-navbar-item>
-            <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/services-playground">Playground</NuxtLink> </vs-navbar-item>
-            <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/services">Services</NuxtLink> </vs-navbar-item>
-            <vs-navbar-item :active="false"> <NuxtLink tag="li" to="/records">Records</NuxtLink> </vs-navbar-item>
-            <template #right>
-                <vs-button>Logout</vs-button>
+            <vs-navbar-item :active="false" v-if="loggedIn()">
+                <NuxtLink tag="li" to="/profile">My Profile</NuxtLink>
+            </vs-navbar-item>
+            <vs-navbar-item :active="false" v-if="loggedIn()">
+                <NuxtLink tag="li" to="/services-playground">Playground</NuxtLink>
+            </vs-navbar-item>
+            <vs-navbar-item :active="false" v-if="isAdmin()">
+                <NuxtLink tag="li" to="/services">Services</NuxtLink>
+            </vs-navbar-item>
+            <vs-navbar-item :active="false" v-if="isAdmin()">
+                <NuxtLink tag="li" to="/records">Records</NuxtLink>
+            </vs-navbar-item>
+            <vs-navbar-item :active="false" v-if="isAdmin()">
+                <NuxtLink tag="li" to="/users">Users</NuxtLink>
+            </vs-navbar-item>
+            <template #right v-if="isAdmin()">
+                <vs-avatar size="30" color="rgb(234,154,62)">
+                    <template #text>
+                    Username
+                    </template>
+                </vs-avatar>
+                <vs-button @click="$auth.logout()">Logout</vs-button>
             </template>
         </vs-navbar>
         <vs-row class="main-container" justify="center">
@@ -19,8 +38,25 @@
         </vs-row>
     </div>
 </template>
+<script>
+export default {
+    methods: {
+        loggedIn(){
+            return this.$auth.loggedIn;
+        },
+        isAdmin(){
+            // TODO: implement role check
+            return this.$auth.loggedIn;
+        }
+    }   
+}
+</script>
 
 <style>
+  :root {
+    --vs-primary: 67, 147, 74;
+  }
+
 html {
     font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
         sans-serif;
@@ -59,6 +95,22 @@ h2 {
 }
 
 .main-container {
-    margin-top: 50px;
+    margin-top: 80px;
 }
+
+.vs-navbar {
+    padding: .5rem 10px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo i {
+    margin-right: .5rem;
+    font-size: 1.5rem;
+}
+
 </style>

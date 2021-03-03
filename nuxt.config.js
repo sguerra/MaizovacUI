@@ -35,12 +35,38 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  router: {
+    middleware: ['auth']
+  },
   
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+  },
+  
+  auth: {
+    rewriteRedirects: false,
+    redirect: {
+      login: '/', // redirect user when not connected
+      home: '/',
+      callback: '/profile',
+      logout: '/'
+    },
+
+    strategies: {
+      local: false,
+      auth0: {
+        domain: 'dev-110z3lmt.us.auth0.com',
+        clientId: '0XlZxagGmpUh0Ms5Z4UxElAcx9qZHc0T'
+      }
+    }
   }
+  
 }
