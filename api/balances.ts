@@ -2,7 +2,7 @@ import { IUser } from '~/types'
 import BaseApi from './base'
 
 export interface IBalance {
-    user: IUser
+    User: IUser
     balance: number
 }
 

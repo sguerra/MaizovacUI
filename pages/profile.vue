@@ -1,25 +1,25 @@
 <template>
-    <div v-if="$auth.loggedIn && userBalance">
+    <div v-if="$auth.loggedIn">
         <vs-row justify="space-between" align="center">
             <h2>My profile</h2>
             <vs-row align="center" class="profile-card">
                 <vs-col w="6">
                     <vs-row class="card-row">
                         <vs-col w="2" class="label">E-mail:</vs-col>
-                        <vs-col w="3">{{userBalance.User.username}}</vs-col>
+                        <vs-col w="3">{{getUserInfo().username}}</vs-col>
                     </vs-row>
                     <vs-row class="card-row">
                         <vs-col w="2" class="label">Role:</vs-col>
-                        <vs-col w="3">{{userBalance.User.role}}</vs-col>
+                        <vs-col w="3">{{getUserInfo().role}}</vs-col>
                     </vs-row>
                     <vs-row>
                         <vs-col w="2" class="label">Status:</vs-col>
-                        <vs-col w="3">{{userBalance.User.status}}</vs-col>
+                        <vs-col w="3">{{getUserInfo().status}}</vs-col>
                     </vs-row>
                 </vs-col>
                 <vs-col w="6" align="center">
                     <div>Balance:</div>
-                    <div class="balance">${{userBalance.balance}}</div>
+                    <div class="balance">${{getUserProfile().balance}}</div>
                 </vs-col>
             </vs-row>
         </vs-row>
@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { balancesApi, recordsApi } from '../api'
+import { recordsApi } from '../api'
 import Record from '~/models/Record'
 import { ColumnConfig } from '~/components/GenericTable.vue'
 import { IBalance } from '~/api/balances'
@@ -79,9 +79,16 @@ export default Vue.extend({
     },
 
     methods: {
-        async fetchData() {
-            this.userBalance = await balancesApi.findCurrent()           
+        async fetchData() {      
             this.records = await recordsApi.findCurrent()           
+        },
+        
+        getUserProfile(){
+            return this.$auth.user?.profileInfo as IBalance
+        },
+
+        getUserInfo(){
+            return this.getUserProfile().User;
         }
     },
 })

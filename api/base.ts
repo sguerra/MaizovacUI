@@ -1,18 +1,29 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios"
+import { Token } from '@nuxtjs/auth-next'
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 
-const axiosInstance = axios.create({baseURL: `${process.env.baseUrl}/v1`})
+const axiosInstance = axios.create({ baseURL: `${process.env.baseUrl}/v1` })
 
 class BaseApi {
     private axios: AxiosInstance
+    private token: string
 
     constructor() {
         this.axios = axiosInstance
+        this.token = ''
+    }
+
+    setToken(token: string) {
+        this.token = token
     }
 
     async _makeRequest(config: AxiosRequestConfig) {
         try {
-            const response = await this.axios(config)
-
+            const response = await this.axios({
+                ...config,
+                headers: {
+                    Authorization: this.token,
+                },
+            })
             return response.data
         } catch (error) {
             throw new Error('API error')
@@ -36,4 +47,4 @@ class BaseApi {
     }
 }
 
-export default BaseApi;
+export default BaseApi

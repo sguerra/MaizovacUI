@@ -1,5 +1,3 @@
-import Vue from "vue/types/umd"
-
 <template>
     <vs-row v-if="!$auth.loggedIn" justify="center">
         <vs-col w="12" align="center">

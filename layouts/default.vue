@@ -22,12 +22,13 @@
             <vs-navbar-item :active="false" v-if="isAdmin()">
                 <NuxtLink tag="li" to="/users">Users</NuxtLink>
             </vs-navbar-item>
-            <template #right v-if="isAdmin()">
-                <vs-avatar size="30" color="rgb(234,154,62)">
+            <template #right v-if="loggedIn()">
+                <vs-avatar size="30" color="rgb(234,154,62)" class="avatar">
                     <template #text>
-                    Username
+                    {{$auth.user.profileInfo.User.username}}
                     </template>
                 </vs-avatar>
+                {{$auth.user.profileInfo.User.username}}
                 <vs-button @click="$auth.logout()">Logout</vs-button>
             </template>
         </vs-navbar>
@@ -46,7 +47,7 @@ export default {
         },
         isAdmin(){
             // TODO: implement role check
-            return this.$auth.loggedIn;
+            return this.$auth.loggedIn && this.$auth.user.isAdmin;
         }
     }   
 }
@@ -113,4 +114,8 @@ h2 {
     font-size: 1.5rem;
 }
 
+
+.avatar {
+    margin-right: .5rem;
+}
 </style>
