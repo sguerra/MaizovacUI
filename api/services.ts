@@ -9,9 +9,10 @@ class ServiceApi extends BaseApi {
     }
 
     async save(service: Service): Promise<Service> {
-        const url = `${this._resource}/${service.uuid}`
+        const url = `${this._resource}/${service.type}`
         const data = {
-            cost: service.cost,
+            type: service.type,
+            cost: Number(service.cost),
             status: service.status,
         }
         return await this.patch<Service>(url, data)

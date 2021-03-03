@@ -16,22 +16,25 @@
                     v-model="service.cost"
                     label-placeholder="Cost"
                     :disabled="!editable"
-                />
-                <vs-select label-placeholder="Status" v-model="service.status" class="form-field" :disabled="!editable" block>
-                    <vs-option label="Active" value="active">
-                        Active
-                    </vs-option>
-                    <vs-option label="Beta" value="beta">
-                        Beta
-                    </vs-option>
-                    <vs-option label="Inactive" value="inactive">
-                        Inactive
-                    </vs-option>
+                    type="number"
+                >
+                    <template v-if="service.cost <= 0" #message-danger> Invalid value </template>
+                </vs-input>
+                <vs-select
+                    label-placeholder="Status"
+                    v-model="service.status"
+                    class="form-field"
+                    :disabled="!editable"
+                    block
+                >
+                    <vs-option label="Active" value="active"> Active </vs-option>
+                    <vs-option label="Beta" value="beta"> Beta </vs-option>
+                    <vs-option label="Inactive" value="inactive"> Inactive </vs-option>
                 </vs-select>
             </div>
 
             <template #footer>
-                <vs-button block @click="onSave" :disabled="!editable"> Save </vs-button>
+                <vs-button block @click="onSave" :disabled="!editable || service.cost <= 0"> Save </vs-button>
             </template>
         </vs-dialog>
     </div>

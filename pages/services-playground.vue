@@ -36,15 +36,12 @@ export default Vue.extend({
     },
 
     async fetch() {
-        this.services = await servicesApi.fetch()
+        this.services = await servicesApi.fetchAll()
     },
 
     methods: {
         getServiceByType(serviceType: ServiceTypes) {
             const service = this.services.find((s) => s.type === serviceType)
-
-            if (service) 
-                service.status = 'inactive'
             return service;
         },
     },
