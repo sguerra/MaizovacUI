@@ -60,7 +60,12 @@ export default Vue.extend({
     },
 
     methods: {
-        applyFilters() {            
+        applyFilters() {     
+            
+            if(this.search === undefined){
+                return this.dataset;
+            }
+
             const keyword = this.search.toLowerCase();
             return this.dataset.filter((row) => {
                 const targetColumn = row[this.keywordFilterOn].toLowerCase();
