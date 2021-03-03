@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$auth.loggedIn">
+    <div v-if="$auth.loggedIn && userProfile">
         <vs-row justify="space-between" align="center">
             <h2>My profile</h2>
             <vs-row align="center" class="profile-card">
@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { recordsApi } from '../api'
+import { recordsApi, userBalancesApi } from '../api'
 import Record from '~/models/Record'
 import { ColumnConfig } from '~/components/GenericTable.vue'
 import { IUserBalance } from '~/api/balances'
@@ -58,6 +58,10 @@ const TABLE_COLUMNS: ColumnConfig<Record>[] = [
         key: 'date',
         header: 'Date',
     },
+    {
+        key: 'serviceResponse',
+        header: 'Response',
+    },
 ]
 
 export default Vue.extend({
@@ -65,6 +69,7 @@ export default Vue.extend({
     data() {
         return {
             records: [] as Record[],
+            userProfile: undefined as IUserBalance | undefined,
             columns: TABLE_COLUMNS,
             userBalance: null as IUserBalance | null
         }
@@ -76,15 +81,16 @@ export default Vue.extend({
 
     methods: {
         async fetchData() {      
-            this.records = await recordsApi.findCurrent()           
+            this.records = await recordsApi.findCurrent()    
+            this.userProfile = await userBalancesApi.findCurrent()    
         },
         
         getUserProfile(){
-            return this.$auth.user?.profileInfo as IUserBalance
+            return this.userProfile
         },
 
         getUserInfo(){
-            return this.getUserProfile().User;
+            return this.getUserProfile()?.User;
         }
     },
 })

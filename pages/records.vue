@@ -6,7 +6,7 @@
         <GenericTable :columns="columns" :dataset="records" keywordFilterOn="serviceType" @row-clicked="viewUser"/>
         <EditRecord
             @saved="handleUserSaved"
-            :user="currentRecord"
+            :record="currentRecord"
             :open="openEditModal"
             :onClose="onEditModalClose"
             @deleted="handleUserDeleted"
@@ -22,10 +22,6 @@ import { ColumnConfig } from '~/components/GenericTable.vue'
 import Record from '~/models/Record'
 
 const TABLE_COLUMNS: ColumnConfig<Record>[] = [
-    {
-        key: 'uuid',
-        header: 'Id',
-    },
     {
         key: 'serviceType',
         header: 'Service Type',
@@ -45,6 +41,10 @@ const TABLE_COLUMNS: ColumnConfig<Record>[] = [
     {
         key: 'date',
         header: 'Date',
+    },
+    {
+        key: 'serviceResponse',
+        header: 'Response',
     },
 ]
 

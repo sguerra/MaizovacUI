@@ -15,7 +15,7 @@ class RecordsApi extends BaseApi {
                 item.User.username,
                 item.cost,
                 item.balance,
-                item.serviceResponse,
+                item.response,
                 DateUtils.formatDate(item.date)
             )
         })
