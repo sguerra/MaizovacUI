@@ -35,13 +35,9 @@ import Vue from 'vue'
 import { recordsApi } from '../api'
 import Record from '~/models/Record'
 import { ColumnConfig } from '~/components/GenericTable.vue'
-import { IBalance } from '~/api/balances'
+import { IUserBalance } from '~/api/balances'
 
 const TABLE_COLUMNS: ColumnConfig<Record>[] = [
-    {
-        key: 'uuid',
-        header: 'Id',
-    },
     {
         key: 'serviceType',
         header: 'Service Type',
@@ -70,7 +66,7 @@ export default Vue.extend({
         return {
             records: [] as Record[],
             columns: TABLE_COLUMNS,
-            userBalance: null as IBalance | null
+            userBalance: null as IUserBalance | null
         }
     },
 
@@ -84,7 +80,7 @@ export default Vue.extend({
         },
         
         getUserProfile(){
-            return this.$auth.user?.profileInfo as IBalance
+            return this.$auth.user?.profileInfo as IUserBalance
         },
 
         getUserInfo(){

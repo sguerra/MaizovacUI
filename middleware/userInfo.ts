@@ -1,4 +1,4 @@
-import { balancesApi } from '~/api'
+import { userBalancesApi } from '~/api'
 
 export default function (middleware: any) {
     const { $auth } = middleware
@@ -8,9 +8,9 @@ export default function (middleware: any) {
 
         console.log('token', token);
         
-        balancesApi.setToken(token)
+        userBalancesApi.setToken(token)
 
-        return balancesApi.findCurrent().then((data: any) => {
+        return userBalancesApi.findCurrent().then((data: any) => {
             $auth.setUser({ ...$auth.user, profileInfo: data, isAdmin: data.User.role === 'admin' })
         })
     }

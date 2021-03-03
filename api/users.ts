@@ -1,19 +1,18 @@
-import { ApiCollection, IUser } from '~/types'
+import { IUser } from '~/types'
 import BaseApi from './base'
 
 class UsersApi extends BaseApi {
     _resource = '/users'
 
-    async find(): Promise<IUser[]> {
-        const response = ((await this.get(this._resource)) as unknown) as ApiCollection<IUser>
-        return response.items || []
+    async findAll(): Promise<IUser[]> {
+        return await this.getCollection(this._resource)
     }
 
     async update(user: IUser): Promise<IUser> {
         const url = `${this._resource}/${user.username}`
         const data = {
             role: user.role,
-            status: user.status
+            status: user.status,
         }
         return ((await this.patch(url, data)) as unknown) as IUser
     }

@@ -24,10 +24,6 @@ import { ColumnConfig } from '~/components/GenericTable.vue'
 
 const TABLE_COLUMNS: ColumnConfig<IUser>[] = [
     {
-        key: 'uuid',
-        header: 'Id',
-    },
-    {
         key: 'username',
         header: 'Username',
     },
@@ -58,7 +54,7 @@ export default Vue.extend({
 
     methods: {
         async fetchUsers() {
-            this.users = await usersApi.find()            
+            this.users = await usersApi.findAll()            
         },
 
         async handleUserSaved(user: IUser) {

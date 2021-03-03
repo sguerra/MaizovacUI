@@ -1,16 +1,19 @@
 import { IUser } from '~/types'
 import BaseApi from './base'
 
-export interface IBalance {
+export interface IUserBalance {
     User: IUser
     balance: number
 }
 
-class BalancesApi extends BaseApi {
+class UserBalancesApi extends BaseApi {
+    async findCurrent(): Promise<IUserBalance> {
+        return (await this.get('/profile')) as IUserBalance
+    }
 
-    async findCurrent(): Promise<IBalance> {
-        return await this.get('/profile') as IBalance
+    async findAll(): Promise<IUserBalance[]> {
+        return this.getCollection('/balances')
     }
 }
 
-export default BalancesApi
+export default UserBalancesApi

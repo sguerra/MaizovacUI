@@ -4,13 +4,12 @@ import { DateUtils } from '~/utils/DateUtils'
 import BaseApi from './base'
 
 class RecordsApi extends BaseApi {
-    _mapCollectionToRecords(collection: ApiCollection<any>): Record[] {
-
-        if(!collection.items){
+    _mapCollectionToRecords(items: any[]): Record[] {
+        if(!items){
             return []
         }
 
-        return collection.items.map((item) => {
+        return items.map((item) => {
             return new Record(
                 item.uuid,
                 item.Service.type,
@@ -24,13 +23,13 @@ class RecordsApi extends BaseApi {
     }
 
     async find(): Promise<Record[]> {
-        const response = ((await this.get('/records')) as unknown) as ApiCollection<Record>
-        return this._mapCollectionToRecords(response)
+        const items = await this.getCollection('/records')
+        return this._mapCollectionToRecords(items)
     }
 
     async findCurrent(): Promise<Record[]> {
-        const response = ((await this.get('/profile/records')) as unknown) as ApiCollection<Record>
-        return this._mapCollectionToRecords(response)
+        const items = await this.getCollection('/profile/records')
+        return this._mapCollectionToRecords(items)
     }
 
     async save(service: Record) {}

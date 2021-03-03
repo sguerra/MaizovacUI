@@ -1,5 +1,6 @@
 import { Token } from '@nuxtjs/auth-next'
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import { ApiCollection } from '~/types'
 
 const axiosInstance = axios.create({ baseURL: `${process.env.baseUrl}/v1` })
 
@@ -32,6 +33,11 @@ class BaseApi {
 
     async get(url: string) {
         return this._makeRequest({ method: 'GET', url: url })
+    }
+
+    async getCollection<T>(url: string):  Promise<T[]> {
+        const response = ((await this.get(url)) as unknown) as ApiCollection<T>
+        return response.items || []
     }
 
     async post(url: string, data: any) {
