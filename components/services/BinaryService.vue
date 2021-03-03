@@ -41,7 +41,7 @@ export default Vue.extend({
         },
         service: {
             type: Service,
-            required: true
+            required: true,
         },
     },
 
@@ -51,13 +51,12 @@ export default Vue.extend({
             secondOperand: '',
             result: '',
             loading: false,
-            error: ''
+            error: '',
         }
     },
 
     methods: {
         async executeOperation() {
-            
             const operation = new BinaryOperation(
                 Number(this.firstOperand),
                 Number(this.secondOperand),
@@ -65,13 +64,13 @@ export default Vue.extend({
             )
 
             try {
-                this.loading = true;
+                this.loading = true
                 const result = await binaryServiceApi.execute(operation)
                 this.result = result.toString()
             } catch (error) {
                 this.error = error.message
             } finally {
-                this.loading = false;
+                this.loading = false
             }
         },
     },

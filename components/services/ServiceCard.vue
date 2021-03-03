@@ -1,6 +1,10 @@
 <template>
     <div v-bind:class="cardClasses">
-        <h3>{{ title }} <span class="beta-badge" v-if="service.status === 'beta'">BETA</span></h3>
+        <h3>
+            {{ title }}
+            <span class="beta-badge" v-if="service.status === 'beta'">BETA</span>
+            <span class="inactive-badge" v-if="service.status === 'inactive'">INACTIVE</span>
+        </h3>
         <vs-row justify="space-between" align="center">
             <slot></slot>
             <vs-col w="2" offset="1">
@@ -96,6 +100,15 @@ strong {
 
 .beta-badge {
     background-color: red;
+    color: white;
+    padding: 2px 4px;
+    font-size: .75rem;
+    border-radius: 4px;
+    margin-left: .5rem;
+}
+
+.inactive-badge {
+    background-color: #666;
     color: white;
     padding: 2px 4px;
     font-size: .75rem;
