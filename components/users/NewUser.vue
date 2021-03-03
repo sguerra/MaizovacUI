@@ -2,7 +2,7 @@
     <div>
         <vs-dialog prevent-close v-model="active" v-on:close="onClose">
             <template #header>
-                <h3>{{ isNew() ? 'New User' : 'User Info'}}</h3>
+                <h3>{{ isNew() ? 'New User' : 'User Info' }}</h3>
             </template>
             <vs-row justify="space-between" class="modal-actions" align="center" v-if="!isNew()">
                 <vs-col w="3">
@@ -20,39 +20,26 @@
                     class="form-field"
                     v-model="user.username"
                     label-placeholder="Username"
-                    :disabled="!editable||required">
-                    <template v-if="isValidUsername()" #message-success>
-                        Valid username
-                    </template>
+                    :disabled="!editable || required"
+                >
+                    <template v-if="isValidUsername()" #message-success> Valid username </template>
                     <template v-if="!isValidUsername() && user.username !== ''" #message-danger>
                         Invalid username
                     </template>
                 </vs-input>
-                <vs-select block  
-                    class="form-field" placeholder="Role" v-model="user.role" :disabled="!editable" >
-                    <vs-option label="User" value="user">
-                        User
-                    </vs-option>
-                    <vs-option label="Admin" value="admin">
-                        Admin
-                    </vs-option>
+                <vs-select block class="form-field" placeholder="Role" v-model="user.role" :disabled="!editable">
+                    <vs-option label="User" value="user"> User </vs-option>
+                    <vs-option label="Admin" value="admin"> Admin </vs-option>
                 </vs-select>
-                <vs-select block  
-                    class="form-field" placeholder="Role" v-model="user.status" :disabled="!editable" >
-                    <vs-option label="Active" value="active">
-                        Active
-                    </vs-option>
-                    <vs-option label="Trial" value="trial">
-                        Trial
-                    </vs-option>
-                    <vs-option label="Inactive" value="inactive">
-                        Inactive
-                    </vs-option>
+                <vs-select block class="form-field" placeholder="Role" v-model="user.status" :disabled="!editable">
+                    <vs-option label="Active" value="active"> Active </vs-option>
+                    <vs-option label="Trial" value="trial"> Trial </vs-option>
+                    <vs-option label="Inactive" value="inactive"> Inactive </vs-option>
                 </vs-select>
             </div>
 
             <template #footer>
-                <vs-button block @click="onSave" :disabled="!editable||!isValidUsername()"> Save </vs-button>
+                <vs-button block @click="onSave" :disabled="!editable || !isValidUsername()"> Save </vs-button>
             </template>
         </vs-dialog>
     </div>
@@ -87,7 +74,7 @@ export default Vue.extend({
         return {
             active: this.open,
             editable: false,
-            required: false
+            required: false,
         }
     },
 
@@ -107,8 +94,10 @@ export default Vue.extend({
             return !this.user.uuid
         },
 
-        isValidUsername(){
-            return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(this.user.username)
+        isValidUsername() {
+            return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+                this.user.username
+            )
         },
     },
 
@@ -119,6 +108,5 @@ export default Vue.extend({
             this.required = !this.isNew()
         },
     },
-
 })
 </script>

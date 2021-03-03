@@ -6,10 +6,18 @@ export default function (middleware: any) {
     if ($auth.loggedIn && !$auth.user.profileInfo) {
         const token = $auth.strategy.token.get()
 
+        // Set the token to execute calls to the API
         BaseApi.token = token
 
+        // Fetch userdata data from the API
         return userBalancesApi.findCurrent().then((data: any) => {
-            $auth.setUser({ ...$auth.user, profileInfo: data, isAdmin: data.User.role === 'admin' })
+
+            // Save the user data to the auth object
+            $auth.setUser({
+                ...$auth.user,
+                profileInfo: data,
+                isAdmin: data.User.role === 'admin',
+            })
         })
     }
 }
