@@ -5,15 +5,10 @@ const axiosInstance = axios.create({ baseURL: `${process.env.baseUrl}/v1` })
 
 class BaseApi {
     private axios: AxiosInstance
-    private token: string
+    static token: string
 
     constructor() {
         this.axios = axiosInstance
-        this.token = ''
-    }
-
-    setToken(token: string) {
-        this.token = token
     }
 
     async _makeRequest(config: AxiosRequestConfig) {
@@ -21,7 +16,7 @@ class BaseApi {
             const response = await this.axios({
                 ...config,
                 headers: {
-                    Authorization: this.token,
+                    Authorization: BaseApi.token,
                 },
             })
             return response.data

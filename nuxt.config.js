@@ -2,6 +2,10 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
+  server: {
+    port: process.env.PORT || 8000
+  },
+
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
@@ -63,8 +67,9 @@ export default {
     strategies: {
       local: false,
       auth0: {
-        domain: 'dev-110z3lmt.us.auth0.com',
-        clientId: '0XlZxagGmpUh0Ms5Z4UxElAcx9qZHc0T'
+        domain: process.env.AUTHORIZATION_DOMAIN,
+        clientId: process.env.AUTHORIZATION_CLIENT_ID,
+        audience: process.env.AUTHORIZATION_AUDIENCE,
       }
     }
   }
