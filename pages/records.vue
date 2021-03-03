@@ -3,7 +3,7 @@
         <vs-row justify="space-between" align="center">
             <h2>Records</h2>
         </vs-row>
-        <GenericTable :columns="columns" :dataset="records" keywordFilterOn="username" @row-clicked="viewUser"/>
+        <GenericTable :columns="columns" :dataset="records" keywordFilterOn="serviceType" @row-clicked="viewUser"/>
         <EditRecord
             @saved="handleUserSaved"
             :user="currentRecord"

@@ -1,24 +1,36 @@
 import Record from '~/models/Record'
 import { ApiCollection } from '~/types'
+import { DateUtils } from '~/utils/DateUtils'
 import BaseApi from './base'
 
-const results = [
-    {
-        uuid: '123',
-        serviceType: 'addition',
-        username: 'lolo',
-        cost: 123,
-        userBalance: 456,
-        serviceResponse: 'empty',
-        date: new Date(),
-    },
-] as Record[]
-
 class RecordsApi extends BaseApi {
+    _mapCollectionToRecords(collection: ApiCollection<any>): Record[] {
+
+        if(!collection.items){
+            return []
+        }
+
+        return collection.items.map((item) => {
+            return new Record(
+                item.uuid,
+                item.Service.type,
+                item.User.username,
+                item.cost,
+                item.balance,
+                item.serviceResponse,
+                DateUtils.formatDate(item.date)
+            )
+        })
+    }
+
     async find(): Promise<Record[]> {
-        return results;
-        // const response = ((await this.get('/records')) as unknown) as ApiCollection<Record>
-        // return response.items
+        const response = ((await this.get('/records')) as unknown) as ApiCollection<Record>
+        return this._mapCollectionToRecords(response)
+    }
+
+    async findCurrent(): Promise<Record[]> {
+        const response = ((await this.get('/profile/records')) as unknown) as ApiCollection<Record>
+        return this._mapCollectionToRecords(response)
     }
 
     async save(service: Record) {}

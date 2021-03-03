@@ -66,7 +66,7 @@ export default Vue.extend({
                     username: '',
                     userBalance: 0,
                     serviceType: 'addition',
-                    date: new Date(),
+                    date: '',
                     cost: 0,
                     serviceResponse: '',
                 }
