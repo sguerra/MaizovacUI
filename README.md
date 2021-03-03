@@ -18,6 +18,11 @@ Build a bare bones calculator with the 4 basic operations and some extras with a
 - Allow changing the status of the services
 - Displays a table with all the transactions made by the users
 
+### Assumptions
+- Balance/Credit starts in 0 and increments as the User requests a service
+- Records are not editable for the sake of integrity of the data history
+- Balance/Credit is not editable for the sake of records history 
+- Services are not removable, they can only be edited and disabled
 
 ## Stack
 - [Nuxt JS](https://nuxtjs.org/)
@@ -32,8 +37,6 @@ Build a bare bones calculator with the 4 basic operations and some extras with a
 ## Build Setup
 
 **Step 1:** Set env variables
-
-This is the trick part since it involves creating a set of 
 
 ```bash
 export BASE_URL=http://165.232.133.235:3000
@@ -65,3 +68,18 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
+## Screenshots
+
+- Integrated authentication service:
+
+<img src="./docs/screenshot-login.png" width="700" alt="Maizovac UI login"/>
+
+- Personal balance and records tracking:
+
+<img src="./docs/screenshot-profile.png" width="700" alt="Maizovac API profile"/>
+
+- Services playground:
+
+<img src="./docs/screenshot-services.png" width="700" alt="Maizovac UI playground"/>
