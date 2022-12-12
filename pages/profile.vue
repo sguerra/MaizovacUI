@@ -34,7 +34,7 @@
 import Vue from 'vue'
 import { recordsApi, userBalancesApi } from '../api'
 import Record from '~/models/Record'
-import { ColumnConfig } from '~/components/GenericTable.vue'
+import GenericTable, { ColumnConfig } from '~/components/GenericTable.vue'
 import { IUserBalance } from '~/api/balances'
 
 const TABLE_COLUMNS: ColumnConfig<Record>[] = [
@@ -65,7 +65,7 @@ const TABLE_COLUMNS: ColumnConfig<Record>[] = [
 ]
 
 export default Vue.extend({
-    components: {},
+    components: { GenericTable },
     data() {
         return {
             records: [] as Record[],

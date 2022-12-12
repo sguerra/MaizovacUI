@@ -20,7 +20,7 @@ import Vue from 'vue'
 import { IUser } from '@/types'
 import { usersApi } from '../api'
 import NewUser from '../components/users/NewUser.vue'
-import { ColumnConfig } from '~/components/GenericTable.vue'
+import GenericTable, { ColumnConfig } from '~/components/GenericTable.vue'
 
 const TABLE_COLUMNS: ColumnConfig<IUser>[] = [
     {
@@ -38,7 +38,7 @@ const TABLE_COLUMNS: ColumnConfig<IUser>[] = [
 ]
 
 export default Vue.extend({
-    components: { NewUser },
+    components: { NewUser, GenericTable },
     data() {
         return {
             users: [] as IUser[],

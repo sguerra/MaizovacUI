@@ -18,7 +18,7 @@
 import Vue from 'vue'
 import { recordsApi } from '../api'
 import EditRecord from '../components/records/EditRecord.vue'
-import { ColumnConfig } from '~/components/GenericTable.vue'
+import GenericTable, { ColumnConfig } from '~/components/GenericTable.vue'
 import Record from '~/models/Record'
 
 const TABLE_COLUMNS: ColumnConfig<Record>[] = [
@@ -49,7 +49,7 @@ const TABLE_COLUMNS: ColumnConfig<Record>[] = [
 ]
 
 export default Vue.extend({
-    components: { EditRecord },
+    components: { EditRecord, GenericTable },
     data() {
         return {
             records: [] as Record[],

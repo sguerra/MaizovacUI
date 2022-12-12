@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { userBalancesApi } from '../api'
-import { ColumnConfig } from '~/components/GenericTable.vue'
+import GenericTable, { ColumnConfig } from '~/components/GenericTable.vue'
 
 type UserBalanceRow = {
     username: string
@@ -29,6 +29,8 @@ const TABLE_COLUMNS: ColumnConfig<UserBalanceRow>[] = [
 ]
 
 export default Vue.extend({
+    components: { GenericTable },
+
     data() {
         return {
             records: [] as UserBalanceRow[],
