@@ -1,4 +1,4 @@
-export type BinaryOperationTypes = 'addition' | 'substraction' | 'multiplication' | 'division'
+export type BinaryOperationTypes = 'addition' | 'subtraction' | 'multiplication' | 'division'
 
 class BinaryOperation {
     firstOperand: number;

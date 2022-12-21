@@ -1,7 +1,7 @@
 <template>
     <ServiceCard title="Square Root" @executed="executeOperation" :loading="loading" :error="error" :service="service">
         <vs-col w="2">
-            <vs-input block label-placeholder="number" type="number" v-model="operand"/>
+            <vs-input block label-placeholder="number" type="number" v-model="operand" />
         </vs-col>
         <vs-col w="1">
             <vs-row justify="center">
@@ -9,7 +9,7 @@
             </vs-row>
         </vs-col>
         <vs-col w="2">
-            <vs-input block readonly state="primary" placeholder="result" type="number" v-model="result"/>
+            <vs-input block readonly state="primary" placeholder="result" type="number" v-model="result" />
         </vs-col>
     </ServiceCard>
 </template>
@@ -26,7 +26,7 @@ export default Vue.extend({
     props: {
         service: {
             type: Service,
-            required: true
+            required: true,
         },
     },
 
@@ -35,20 +35,20 @@ export default Vue.extend({
             operand: '',
             result: '',
             loading: false,
-            error: ''
+            error: '',
         }
     },
 
     methods: {
-        async executeOperation() {            
+        async executeOperation() {
             try {
-                this.loading = true;                
+                this.loading = true
                 const result = await squareRootServiceApi.execute(Number(this.operand))
                 this.result = result.toString()
             } catch (error) {
                 this.error = error.message
             } finally {
-                this.loading = false;
+                this.loading = false
             }
         },
     },

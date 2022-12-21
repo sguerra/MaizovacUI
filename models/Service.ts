@@ -1,4 +1,4 @@
-export type ServiceTypes = 'addition' | 'substraction' | 'multiplication' | 'division' | 'square_root' | 'random_string'
+export type ServiceTypes = 'addition' | 'subtraction' | 'multiplication' | 'division' | 'square_root' | 'random_string'
 export type ServiceStatus = 'active' | 'beta' | 'inactive'
 
 class Service {

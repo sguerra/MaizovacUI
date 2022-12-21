@@ -27,13 +27,7 @@
                     label-placeholder="User balance"
                     :disabled="true"
                 />
-                <vs-input
-                    block
-                    class="form-field"
-                    v-model="record.date"
-                    label-placeholder="date"
-                    :disabled="true"
-                />
+                <vs-input block class="form-field" v-model="record.date" label-placeholder="date" :disabled="true" />
                 <vs-input
                     block
                     class="form-field"

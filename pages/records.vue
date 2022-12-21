@@ -3,7 +3,7 @@
         <vs-row justify="space-between" align="center">
             <h2>Records</h2>
         </vs-row>
-        <GenericTable :columns="columns" :dataset="records" keywordFilterOn="serviceType" @row-clicked="viewUser"/>
+        <GenericTable :columns="columns" :dataset="records" keywordFilterOn="serviceType" @row-clicked="viewUser" />
         <EditRecord
             @saved="handleUserSaved"
             :record="currentRecord"
@@ -65,7 +65,7 @@ export default Vue.extend({
 
     methods: {
         async fetchUsers() {
-            this.records = await recordsApi.find()            
+            this.records = await recordsApi.find()
         },
 
         async handleUserSaved(record: Record) {

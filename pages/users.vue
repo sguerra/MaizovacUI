@@ -4,7 +4,7 @@
             <h2>Users</h2>
             <vs-button @click="newUser" icon><i class="bx bx-plus"></i>New User</vs-button>
         </vs-row>
-        <GenericTable :columns="columns" :dataset="users" keywordFilterOn="username" @row-clicked="viewUser"/>
+        <GenericTable :columns="columns" :dataset="users" keywordFilterOn="username" @row-clicked="viewUser" />
         <NewUser
             @saved="handleUserSaved"
             :user="currentUser"
@@ -54,7 +54,7 @@ export default Vue.extend({
 
     methods: {
         async fetchUsers() {
-            this.users = await usersApi.findAll()            
+            this.users = await usersApi.findAll()
         },
 
         async handleUserSaved(user: IUser) {

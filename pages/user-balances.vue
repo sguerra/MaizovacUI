@@ -3,7 +3,7 @@
         <vs-row justify="space-between" align="center">
             <h2>User Balances</h2>
         </vs-row>
-        <GenericTable :columns="columns" :dataset="records" keywordFilterOn="username"/>
+        <GenericTable :columns="columns" :dataset="records" keywordFilterOn="username" />
     </div>
 </template>
 

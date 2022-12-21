@@ -1,6 +1,6 @@
 import { Token } from '@nuxtjs/auth-next'
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { ApiCollection } from '~/types'
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios'
+import { ApiCollection, APIError } from '~/types'
 
 const axiosInstance = axios.create({ baseURL: `${process.env.baseUrl}/v1` })
 
@@ -22,7 +22,8 @@ class BaseApi {
             })
             return response.data
         } catch (error) {
-            throw new Error('API error')
+            const apiError = (error as AxiosError)?.response?.data as APIError
+            throw new Error(`API Error: ${apiError.message}`)
         }
     }
 

@@ -8,11 +8,26 @@
         <vs-row justify="space-between" align="center">
             <slot></slot>
             <vs-col w="2" offset="1">
-                <vs-button block icon relief color="#ffeb00" class="dark-text" disabled
-                    v-if="service.status === 'inactive'">Try for <strong>${{ service.cost }}</strong> USD</vs-button
+                <vs-button
+                    block
+                    icon
+                    relief
+                    color="#ffeb00"
+                    class="dark-text"
+                    disabled
+                    v-if="service.status === 'inactive'"
+                    >Try for <strong>${{ service.cost }}</strong> USD</vs-button
                 >
-                <vs-button block @click="onTryClick" icon relief color="#ffeb00" class="dark-text" :loading="loading"
-                    v-else>Try for <strong>${{ service.cost }}</strong> USD</vs-button
+                <vs-button
+                    block
+                    @click="onTryClick"
+                    icon
+                    relief
+                    color="#ffeb00"
+                    class="dark-text"
+                    :loading="loading"
+                    v-else
+                    >Try for <strong>${{ service.cost }}</strong> USD</vs-button
                 >
             </vs-col>
         </vs-row>
@@ -102,17 +117,17 @@ strong {
     background-color: red;
     color: white;
     padding: 2px 4px;
-    font-size: .75rem;
+    font-size: 0.75rem;
     border-radius: 4px;
-    margin-left: .5rem;
+    margin-left: 0.5rem;
 }
 
 .inactive-badge {
     background-color: #666;
     color: white;
     padding: 2px 4px;
-    font-size: .75rem;
+    font-size: 0.75rem;
     border-radius: 4px;
-    margin-left: .5rem;
+    margin-left: 0.5rem;
 }
 </style>

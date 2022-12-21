@@ -3,7 +3,7 @@
         <vs-row justify="space-between" align="center">
             <h2>Services</h2>
         </vs-row>
-        <GenericTable :columns="columns" :dataset="services" keywordFilterOn="type" @row-clicked="viewService"/>
+        <GenericTable :columns="columns" :dataset="services" keywordFilterOn="type" @row-clicked="viewService" />
         <EditService
             @saved="handleServiceSaved"
             :service="currentService"

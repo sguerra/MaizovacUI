@@ -1,7 +1,13 @@
 <template>
-    <ServiceCard title="Random String" @executed="executeOperation" :loading="loading" :error="error" :service="service">
+    <ServiceCard
+        title="Random String"
+        @executed="executeOperation"
+        :loading="loading"
+        :error="error"
+        :service="service"
+    >
         <vs-col w="1">
-            <vs-input block label-placeholder="length" type="number" v-model="length"/>
+            <vs-input block label-placeholder="length" type="number" v-model="length" />
         </vs-col>
         <vs-col w="2">
             <vs-checkbox v-model="includeDigits">Digits (0-9)</vs-checkbox>
@@ -15,7 +21,7 @@
             </vs-row>
         </vs-col>
         <vs-col w="2">
-            <vs-input block readonly state="primary" placeholder="result" v-model="result"/>
+            <vs-input block readonly state="primary" placeholder="result" v-model="result" />
         </vs-col>
     </ServiceCard>
 </template>
@@ -33,10 +39,10 @@ export default Vue.extend({
     props: {
         service: {
             type: Service,
-            required: true
+            required: true,
         },
     },
-    
+
     data() {
         return {
             length: 5,
@@ -44,21 +50,24 @@ export default Vue.extend({
             includeUppercase: false,
             result: '',
             error: '',
-            loading: false
+            loading: false,
         }
     },
 
     methods: {
-        async executeOperation() {            
+        async executeOperation() {
             try {
-                this.loading = true;                
-                const operation = new RandomStringOperation(Number(this.length), this.includeDigits, this.includeUppercase)
+                this.loading = true
+                const operation = new RandomStringOperation(
+                    Number(this.length),
+                    this.includeDigits,
+                    this.includeUppercase
+                )
                 this.result = await randomStringServiceApi.execute(operation)
-                
             } catch (error) {
                 this.error = error.message
             } finally {
-                this.loading = false;
+                this.loading = false
             }
         },
     },

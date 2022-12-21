@@ -1,3 +1,8 @@
+export interface APIError {
+    $schema: 'api:error';
+    message: string;
+}
+
 export interface ApiCollection<T> {
     items: T[]
 }

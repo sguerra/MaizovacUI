@@ -4,7 +4,7 @@
         <BinaryService title="Addition" :service="getServiceByType('addition')">
             <i class="bx bx-plus"></i>
         </BinaryService>
-        <BinaryService title="Substraction" :service="getServiceByType('substraction')">
+        <BinaryService title="Subtraction" :service="getServiceByType('subtraction')">
             <i class="bx bx-minus"></i>
         </BinaryService>
         <BinaryService title="Muliplication" :service="getServiceByType('multiplication')">
@@ -42,7 +42,7 @@ export default Vue.extend({
     methods: {
         getServiceByType(serviceType: ServiceTypes) {
             const service = this.services.find((s) => s.type === serviceType)
-            return service;
+            return service
         },
     },
 })

@@ -5,8 +5,14 @@
         </template>
         <template #thead>
             <vs-tr>
-                <vs-th sort @click="dataset = $vs.sortData($event, dataset, column.key)" :key="column.key"
-                v-for="column in columns"> {{ column.header }} </vs-th>
+                <vs-th
+                    sort
+                    @click="dataset = $vs.sortData($event, dataset, column.key)"
+                    :key="column.key"
+                    v-for="column in columns"
+                >
+                    {{ column.header }}
+                </vs-th>
             </vs-tr>
         </template>
         <template #tbody>
@@ -16,9 +22,7 @@
                 :dataset="row"
                 @click="rowClick(row)"
             >
-                <vs-td :key="column.key"
-                    v-for="column in columns"> {{ row[column.key]}}
-                </vs-td>
+                <vs-td :key="column.key" v-for="column in columns"> {{ row[column.key] }} </vs-td>
             </vs-tr>
         </template>
         <template #footer>
@@ -31,8 +35,8 @@
 import Vue, { PropType } from 'vue'
 
 export type ColumnConfig<M> = {
-    header: string;
-    key: Extract<keyof M, string>;
+    header: string
+    key: Extract<keyof M, string>
 }
 
 export default Vue.extend({
@@ -40,42 +44,41 @@ export default Vue.extend({
     props: {
         columns: {
             type: Array as PropType<ColumnConfig<any>[]>,
-            required: true
+            required: true,
         },
         dataset: {
             type: Array as PropType<any[]>,
-            required: true
+            required: true,
         },
         keywordFilterOn: {
             type: String,
-            required: true
-        }
+            required: true,
+        },
     },
     data() {
         return {
             page: 1,
             max: 3,
-            search: ''
+            search: '',
         }
     },
 
     methods: {
-        applyFilters() {     
-            
-            if(this.search === undefined){
-                return this.dataset;
+        applyFilters() {
+            if (this.search === undefined) {
+                return this.dataset
             }
 
-            const keyword = this.search.toLowerCase();
+            const keyword = this.search.toLowerCase()
             return this.dataset.filter((row) => {
-                const targetColumn = row[this.keywordFilterOn].toLowerCase();
+                const targetColumn = row[this.keywordFilterOn].toLowerCase()
                 return targetColumn.includes(keyword)
             })
         },
 
-        rowClick(row: any){
+        rowClick(row: any) {
             this.$emit('row-clicked', row)
-        }
+        },
     },
 })
 </script>

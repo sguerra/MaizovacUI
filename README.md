@@ -10,7 +10,7 @@ Build a bare bones calculator with the 4 basic operations and some extras with a
 - Authentication and role management with Auth0 and JWT
 - Services:
     - addition
-    - substraction
+    - subtraction
     - multipication
     - division
     - square root
@@ -39,7 +39,7 @@ Build a bare bones calculator with the 4 basic operations and some extras with a
 **Step 1:** Set env variables
 
 ```bash
-export BASE_URL=http://165.232.133.235:3000
+export BASE_URL=http://137.184.83.189:3000
 export AUTHORIZATION_DOMAIN=maizovac.us.auth0.com 
 export AUTHORIZATION_CLIENT_ID=V6iNlPmgUv84bhbHFjSoOeuGxmbdgGXo
 export AUTHORIZATION_AUDIENCE=maizovac-api
