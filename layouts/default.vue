@@ -1,6 +1,6 @@
 <template>
     <div>
-        <vs-navbar center-collapsed not-line color="primary" text-white shadow square>
+        <vs-navbar center-collapsed not-line color="primary" text-white shadow>
             <template #left>
                 <div class="logo">
                     <i class='bx bx-calculator app-icon'></i>
@@ -26,13 +26,15 @@
                 <NuxtLink tag="li" to="/users">Users</NuxtLink>
             </vs-navbar-item>
             <template #right v-if="loggedIn()">
-                <vs-avatar size="30" color="rgb(234,154,62)" class="avatar">
-                    <template #text>
+                <div class="user">
+                    <vs-avatar size="30" color="#116530" class="avatar">
+                        <template #text>
+                        {{$auth.user.profileInfo.User.username}}
+                        </template>
+                    </vs-avatar>
                     {{$auth.user.profileInfo.User.username}}
-                    </template>
-                </vs-avatar>
-                {{$auth.user.profileInfo.User.username}}
-                <vs-button @click="$auth.logout()">Logout</vs-button>
+                    <vs-button @click="$auth.logout()" color="secondary" size="large">Logout</vs-button>
+                </div>
             </template>
         </vs-navbar>
         <vs-row class="main-container" justify="center">
@@ -49,7 +51,6 @@ export default {
             return this.$auth.loggedIn;
         },
         isAdmin(){
-            // TODO: implement role check
             return this.$auth.loggedIn && this.$auth.user.isAdmin;
         }
     }   
@@ -58,7 +59,8 @@ export default {
 
 <style>
   :root {
-    --vs-primary: 67, 147, 74;
+    --vs-primary: 11, 70, 25;
+    --vs-secondary: 17, 101, 48;
   }
 
 html {
@@ -71,6 +73,22 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
+}
+
+body{
+    background-image: url('~/assets/bg.png');
+    background-size: cover;
+    background-repeat: none;
+}
+
+body:before {
+    content: '';
+    background-color: black;
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    height:100vh;
+    opacity: 0.25;
 }
 
 *,
@@ -102,6 +120,16 @@ h2 {
     margin-top: 80px;
 }
 
+.main-container:before {
+    content: '';
+    background-color: #E8E8CC;
+    position:fixed;
+    width:90%;
+    height:100%;
+    top:0px;
+    opacity: 0.95;
+}
+
 .vs-navbar {
     padding: .5rem 10px;
 }
@@ -117,8 +145,16 @@ h2 {
     font-size: 1.5rem;
 }
 
+.user{
+    display: inline-flex;
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .avatar {
     margin-right: .5rem;
 }
+
+
 </style>

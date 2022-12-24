@@ -12,7 +12,7 @@
                     block
                     icon
                     relief
-                    color="#ffeb00"
+                    color="#FFCC1D"
                     class="dark-text"
                     disabled
                     v-if="service.status === 'inactive'"
@@ -23,7 +23,7 @@
                     @click="onTryClick"
                     icon
                     relief
-                    color="#ffeb00"
+                    color="#FFCC1D"
                     class="dark-text"
                     :loading="loading"
                     v-else
@@ -32,7 +32,7 @@
             </vs-col>
         </vs-row>
         <div v-if="error" class="error">
-            {{ error }}
+            <strong>{{ error }}</strong>
         </div>
     </div>
 </template>
@@ -81,10 +81,11 @@ export default Vue.extend({
 
 <style>
 .card {
-    border: 1px solid #ccc;
+    border: 1px solid #0B4619;
     padding: 1.5rem;
     border-radius: 30px;
     margin-bottom: 1rem;
+    background-color: #e9f2ec;
 }
 
 .card h3 {
@@ -109,8 +110,8 @@ strong {
 
 .error {
     color: rgb(255, 71, 87);
-    margin: 0.5rem 0;
-    font-size: 12px;
+    margin-top: 0.5rem;
+    font-size: 1rem;
 }
 
 .beta-badge {

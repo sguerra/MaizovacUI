@@ -7,7 +7,7 @@
         <BinaryService title="Subtraction" :service="getServiceByType('subtraction')">
             <i class="bx bx-minus"></i>
         </BinaryService>
-        <BinaryService title="Muliplication" :service="getServiceByType('multiplication')">
+        <BinaryService title="Multiplication" :service="getServiceByType('multiplication')">
             <i class="bx bx-x"></i>
         </BinaryService>
         <BinaryService title="Division" :service="getServiceByType('division')">

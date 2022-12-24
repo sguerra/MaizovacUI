@@ -22,7 +22,7 @@
                 :dataset="row"
                 @click="rowClick(row)"
             >
-                <vs-td :key="column.key" v-for="column in columns"> {{ row[column.key] }} </vs-td>
+                <vs-td :key="column.key" v-for="column in columns"> <span class="cell"> {{ row[column.key] }} </span> </vs-td>
             </vs-tr>
         </template>
         <template #footer>
@@ -83,4 +83,11 @@ export default Vue.extend({
 })
 </script>
 
-<style></style>
+<style scoped>
+.table{
+    background-color: #e9f2ec;
+}
+.cell {
+    color: #0B4619;
+}
+</style>

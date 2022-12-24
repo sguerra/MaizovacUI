@@ -18,8 +18,10 @@
                     </vs-row>
                 </vs-col>
                 <vs-col w="6" align="center">
-                    <div>Balance:</div>
-                    <div class="balance">${{ getUserProfile().balance }}</div>
+                    <div class="balance-wrapper">
+                        <strong>Balance:</strong>
+                        <div class="balance">${{ getUserProfile().balance }}</div>
+                    </div>
                 </vs-col>
             </vs-row>
         </vs-row>
@@ -97,16 +99,25 @@ export default Vue.extend({
 </script>
 <style scoped>
 .profile-card {
-    border: 1px solid #ddd;
-    box-shadow: 0 0 5px 1px #eee;
+    border: solid 3px #0B4619;
     border-radius: 0.75rem;
     padding: 2rem;
-    background-color: rgb(234, 154, 62);
+    background-color: #116530;
     color: white;
 }
 
 .card-row {
     margin-bottom: 1rem;
+}
+
+.balance-wrapper{
+    color: #FFCC1D;
+    width: 250px;
+    justify-self: center;
+    border: solid 2px #FFCC1D;
+    background-color: #0B4619;
+    border-radius:1rem;
+    padding: 0.5rem;
 }
 
 .balance {
