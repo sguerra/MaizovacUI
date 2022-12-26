@@ -1,27 +1,26 @@
 # MaizovacUI
 
-## The idea
+Service calculator client with the 6 basic operations provided in a [REST API].
 
-Build a bare bones calculator with the 4 basic operations and some extras with all the logic residing in a [REST API].
+<img src="./docs/screenshot-first-screen.png" width="700" alt="Maizovac UI first screen"/>
 
 ## Features
 
-- User CRUD
-- Authentication and role management with Auth0 and JWT
+- Authentication with Auth0 and JWT
 - Services:
     - addition
     - subtraction
     - multipication
     - division
     - square root
+    - random string (external provider)
 - Keep track of all the service executions made by the user
 - Allow changing the status of the services
 - Displays a table with all the transactions made by the users
 
 ### Assumptions
-- Balance/Credit starts in 0 and increments as the User requests a service
-- Records are not editable for the sake of integrity of the data history
-- Balance/Credit is not editable for the sake of records history 
+- Balance/Credit starts in $10 and decreases as the User requests for a service
+- Records can be deleted so that the user balance can be restored
 - Services are not removable, they can only be edited and disabled
 
 ## Stack
@@ -48,7 +47,7 @@ export AUTHORIZATION_AUDIENCE=maizovac-api
 
 `BASE_URL` is the URL of the API
 
-`AUTHORIZATION_DOMAIN`, `AUTHORIZATION_CLIENT_ID` and  `AUTHORIZATION_AUDIENCE` all are needed as part of the Auth0 service, follow [this](https://auth.nuxtjs.org/providers/auth0) instructions on how to obtain those values. A Auth0 account will be needed.
+`AUTHORIZATION_DOMAIN`, `AUTHORIZATION_CLIENT_ID` and  `AUTHORIZATION_AUDIENCE` all are needed as part of the Auth0 service, follow [this](https://auth.nuxtjs.org/providers/auth0) instructions on how to obtain those values. An Auth0 account will be needed.
 
 **Step 2:** Run the server
 
@@ -59,11 +58,11 @@ $ npm install
 # serve with hot reload at localhost:8000
 $ npm run dev
 
-# build for production and launch server
+# or build for production and launch server
 $ npm run build
 $ npm run start
 
-# generate static project
+# or generate static project
 $ npm run generate
 ```
 
