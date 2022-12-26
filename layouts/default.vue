@@ -14,17 +14,17 @@
                 <NuxtLink tag="li" to="/services-playground">Playground</NuxtLink>
             </vs-navbar-item>
             <vs-navbar-item :active="false" v-if="isAdmin()">
-                <NuxtLink tag="li" to="/services">Services</NuxtLink>
-            </vs-navbar-item>
-            <vs-navbar-item :active="false" v-if="isAdmin()">
                 <NuxtLink tag="li" to="/records">Records</NuxtLink>
             </vs-navbar-item>
             <vs-navbar-item :active="false" v-if="isAdmin()">
+                <NuxtLink tag="li" to="/services">Services</NuxtLink>
+            </vs-navbar-item>
+            <!-- <vs-navbar-item :active="false" v-if="isAdmin()">
                 <NuxtLink tag="li" to="/user-balances">User Balances</NuxtLink>
             </vs-navbar-item>
             <vs-navbar-item :active="false" v-if="isAdmin()">
                 <NuxtLink tag="li" to="/users">Users</NuxtLink>
-            </vs-navbar-item>
+            </vs-navbar-item> -->
             <template #right v-if="loggedIn()">
                 <div class="user">
                     <vs-avatar size="30" color="#116530" class="avatar">

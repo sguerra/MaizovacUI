@@ -11,7 +11,6 @@
                 <vs-button
                     block
                     icon
-                    relief
                     color="#FFCC1D"
                     class="dark-text"
                     disabled
@@ -22,7 +21,6 @@
                     block
                     @click="onTryClick"
                     icon
-                    relief
                     color="#FFCC1D"
                     class="dark-text"
                     :loading="loading"
@@ -81,11 +79,11 @@ export default Vue.extend({
 
 <style>
 .card {
-    border: 1px solid #0B4619;
+    border: 2px solid #0B4619;
     padding: 1.5rem;
     border-radius: 30px;
     margin-bottom: 1rem;
-    background-color: #e9f2ec;
+    background-color: #FFCC1D44;
 }
 
 .card h3 {
@@ -102,6 +100,7 @@ export default Vue.extend({
 
 .dark-text {
     color: black;
+    border: 2px solid black;
 }
 
 strong {
@@ -109,7 +108,7 @@ strong {
 }
 
 .error {
-    color: rgb(255, 71, 87);
+    color: red;
     margin-top: 0.5rem;
     font-size: 1rem;
 }

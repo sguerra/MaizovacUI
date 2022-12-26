@@ -34,10 +34,10 @@ const TABLE_COLUMNS: ColumnConfig<Record>[] = [
         key: 'cost',
         header: 'Cost',
     },
-    {
-        key: 'userBalance',
-        header: 'User Balance',
-    },
+    // {
+    //     key: 'userBalance',
+    //     header: 'User Balance',
+    // },
     {
         key: 'date',
         header: 'Date',

@@ -48,7 +48,7 @@ export default Vue.extend({
 .image-wrapper {
     width: 400px;
     aspect-ratio:1;
-    border: 1px solid #ddd;
+    border: 2px solid #116530;
     box-shadow: 0 0 3px 1px #BBB;
     border-radius: 0.75rem;
     overflow: hidden;

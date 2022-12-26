@@ -1,7 +1,7 @@
 <template>
     <div v-if="$auth.loggedIn && userProfile">
         <vs-row justify="space-between" align="center">
-            <h2>My profile</h2>
+            <h2>My Profile</h2>
             <vs-row align="center" class="profile-card">
                 <vs-col w="6">
                     <vs-row class="card-row">
@@ -52,10 +52,10 @@ const TABLE_COLUMNS: ColumnConfig<Record>[] = [
         key: 'cost',
         header: 'Cost',
     },
-    {
-        key: 'userBalance',
-        header: 'User Balance',
-    },
+    // {
+    //     key: 'userBalance',
+    //     header: 'User Balance',
+    // },
     {
         key: 'date',
         header: 'Date',
@@ -102,8 +102,7 @@ export default Vue.extend({
     border: solid 3px #0B4619;
     border-radius: 0.75rem;
     padding: 2rem;
-    background-color: #116530;
-    color: white;
+    background-color: #FFCC1D44;
 }
 
 .card-row {
@@ -111,11 +110,11 @@ export default Vue.extend({
 }
 
 .balance-wrapper{
-    color: #FFCC1D;
+    color: #0B4619;
     width: 250px;
     justify-self: center;
-    border: solid 2px #FFCC1D;
-    background-color: #0B4619;
+    border: solid 2px #0B4619;
+    background-color: #FFCC1D;
     border-radius:1rem;
     padding: 0.5rem;
 }

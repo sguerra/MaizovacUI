@@ -58,7 +58,7 @@ export default Vue.extend({
     data() {
         return {
             page: 1,
-            max: 3,
+            max: 5,
             search: '',
         }
     },

@@ -4,6 +4,16 @@
             <template #header>
                 <h3>Record Info</h3>
             </template>
+            <vs-row justify="space-between" class="modal-actions" align="center">
+                <vs-col w="3">
+                    <vs-switch v-model="editable"> Edit </vs-switch>
+                </vs-col>
+                <vs-col w="3">
+                    <vs-row justify="flex-end">
+                        <vs-button danger @click="onDelete" v-if="editable"> Delete </vs-button>
+                    </vs-row>
+                </vs-col>
+            </vs-row>
             <div>
                 <vs-input
                     block
@@ -73,6 +83,13 @@ export default Vue.extend({
             active: this.open,
             editable: false,
         }
+    },
+
+    methods: {
+        onDelete() {
+            this.active = false
+            this.$emit('deleted', this.record)
+        },
     },
 
     watch: {
