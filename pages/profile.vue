@@ -83,7 +83,8 @@ export default Vue.extend({
 
     methods: {
         async fetchData() {
-            this.records = await recordsApi.findCurrent()
+            // TODO: Fix this.records = await recordsApi.findCurrent()
+            this.records = await recordsApi.find()
             this.userProfile = await userBalancesApi.findCurrent()
         },
 
