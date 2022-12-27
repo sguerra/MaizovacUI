@@ -15,6 +15,7 @@
     "@nuxt/builder-edge": "^2.16.0-27720022.54e852f",
     "@nuxt/cli-edge": "^2.16.0-27720022.54e852f",
     "@nuxt/core-edge": "^2.16.0-27720022.54e852f",
+    "@nuxt/generator-edge": "^2.16.0-27720022.54e852f",
     "@nuxt/typescript-runtime": "^2.1.0",
     "@nuxtjs/auth-next": "^5.0.0-1613647907.37b1156",
     "@nuxtjs/axios": "^5.13.6",

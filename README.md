@@ -82,3 +82,7 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 - Services playground:
 
 <img src="./docs/screenshot-services.png" width="700" alt="Maizovac UI playground"/>
+
+- Records deletion support:
+
+<img src="./docs/screenshot-records-deletion.png" width="700" alt="Maizovac UI playground"/>
